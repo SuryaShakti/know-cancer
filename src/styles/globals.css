@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  /* width: 100vw; */
+}
+.Background {
+  background: linear-gradient(180deg, #E40411 0%, #FDD6F2 100%);
+box-shadow: 0px 4px 4px #F5F5F5;
+border-radius: 10px;
+}
+.bg{
+  background: #FFFFFF;
+box-shadow: 0px 4px 10px rgba(138, 142, 148, 0.05);
+border-radius: 20px;
+}

@@ -23,19 +23,30 @@ const navigation = [
     current: false,
   },
   {
-    name: "Add New Test/Price",
-    href: "/tests",
+    name: "Profile",
+    href: "/profile",
     icon: PlusIcon,
     current: false,
   },
   {
-    name: "Order Management",
-    href: "/order-management",
+    name: "Support",
+    href: "/support",
+    icon: InboxIcon,
+    current: false,
+  },
+  {
+    name: "Privacy & Policy",
+    href: "/privacy",
     icon: CalendarIcon,
     current: false,
   },
-  { name: "Analytics", href: "/analytics", icon: InboxIcon, current: false },
-  { name: "Wallet", href: "/wallet", icon: CurrencyDollarIcon, current: false },
+  {
+    name: "Terms & Conditions",
+    href: "/terms",
+    icon: InboxIcon,
+    current: false,
+  },
+
   { name: "logout", href: "/", icon: LogoutIcon, current: false },
 ];
 
@@ -63,7 +74,7 @@ const SideBar = () => {
                   key={item.name}
                   className={classNames(
                     item.current
-                      ? "bg-bluePrimary text-white"
+                      ? " text-[#E61323]"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                   )}
@@ -71,7 +82,7 @@ const SideBar = () => {
                   <item.icon
                     className={classNames(
                       item.current
-                        ? "text-white"
+                        ? "text-[#E61323]"
                         : "text-gray-400 group-hover:text-gray-500",
                       "mr-3 flex-shrink-0 h-6 w-6"
                     )}

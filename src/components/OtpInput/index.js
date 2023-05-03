@@ -42,7 +42,7 @@ export default function OtpInput({ otp, setOtp }) {
     <input
       key={i}
       type="text"
-      className="w-12 h-12 rounded-full flex justify-center items-center text-center bg-transparent text-gray-500 border border-gray-500"
+      className="w-12 h-12 rounded-md flex justify-center items-center text-center bg-transparent text-gray-500 border border-gray-500"
       maxLength={1}
       value={otp[i] !== "_" ? otp[i] : ""}
       onChange={(event) => handleInputChange(i, event)}

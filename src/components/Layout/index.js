@@ -36,27 +36,39 @@ import SideBar from "./SideBar";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
   {
-    name: "Staff Management",
-    href: "/staff-managemnet",
+    name: "Q&A",
+    href: "/questions",
     icon: UsersIcon,
     current: false,
   },
   {
-    name: "Add New Test/Price",
-    href: "/tests",
+    name: "Profile",
+    href: "/profile",
     icon: PlusIcon,
     current: false,
   },
   {
-    name: "Order Management",
-    href: "/order-management",
+    name: "Support",
+    href: "/support",
+    icon: InboxIcon,
+    current: false,
+  },
+  {
+    name: "Privacy & Policy",
+    href: "/privacy",
     icon: CalendarIcon,
     current: false,
   },
-  { name: "Analytics", href: "/analytics", icon: InboxIcon, current: false },
-  { name: "Wallet", href: "/wallet", icon: CurrencyDollarIcon, current: false },
+  {
+    name: "Terms & Conditions",
+    href: "/terms",
+    icon: InboxIcon,
+    current: false,
+  },
+
   { name: "logout", href: "/", icon: LogoutIcon, current: false },
 ];
+
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
@@ -126,7 +138,7 @@ export default function Layout({ children }) {
                 <div className="flex-shrink-0 flex items-center px-4">
                   <img
                     className="h-10 w-auto"
-                    src="/images/logo.svg"
+                    src="/images/logo.png"
                     alt="company logo"
                   />
                 </div>
@@ -165,7 +177,7 @@ export default function Layout({ children }) {
           </Dialog>
         </Transition.Root>
         {/* ------------------------- NAVBAR ------------------------ */}
-        <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white  shadow">
+        <div className="sticky top-0 z-10 flex-shrink-0 flex h-auto bg-white  shadow-[0_2px_1px_rgba(0, 0, 0, 0.05)]">
           <button
             type="button"
             className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -174,12 +186,12 @@ export default function Layout({ children }) {
             <span className="sr-only">Open sidebar</span>
             <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 px-4 flex justify-between">
+          <div className="flex-1 flex justify-between">
             <div className="flex-1 flex items-center">
               <div className="flex  flex-shrink-0 items-center">
                 <img
                   className="h-10 w-auto"
-                  src="/images/logo.svg"
+                  src="/images/logo.png"
                   alt="Company logo is here "
                 />
               </div>
