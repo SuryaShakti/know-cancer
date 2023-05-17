@@ -10,11 +10,10 @@ function Home() {
         {/* PUT LOGIN SCREEN IMAGE HERE */}
         image should be here
       </div>
-      <div className="bg-gray-200 flex justify-center items-center flex-col">
+      <div className="mainbg bg-gray-200 flex justify-center items-center flex-col">
         {/* LOGIN FORM SHOULD BE HERE */}
         <LoginForm />
         {/* <SignupForm /> */}
-        {/* <QAForm/> */}
         {/* <OtherInfo/> */}
       </div>
     </div>

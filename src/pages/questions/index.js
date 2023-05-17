@@ -11,12 +11,6 @@ const questions = [
       "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
   },
   {
-    id: 1,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
     id: 2,
     question: "What is Cancer?",
     answer:
@@ -42,6 +36,12 @@ const questions = [
   },
   {
     id: 6,
+    question: "What is Cancer?",
+    answer:
+      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+  },
+  {
+    id: 7,
     question: "What is Cancer?",
     answer:
       "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
@@ -87,8 +87,9 @@ const Questions = () => {
       <div className="grid md:grid-cols-3 gap-4 mt-10">
         {questions.map((item, index) => (
           <div className="shadow py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_rgba(230,19,35,0.5)]">
-            <div className="text-black font-bold text-lg p-1 font-['Poppins']">
-              Heal Cancer{" "}
+            <div className="text-black font-bold text-lg p-1 font-['Poppins'] flex space-x-2">
+              <img src={"/images/vector.png"} className="w-8 rounded-md" />{" "}
+              <div className="px-2"> Heal Cancer </div>
             </div>
             <div className="w-72 border rounded-md p-2 border-[#FABDD4] ml-2 justify">
               <div className="h-14 text-[#E61323] text-lg font-['Poppins']">

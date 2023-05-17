@@ -1,8 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
+import PatientData from "@/components/Tables/PatientData";
 
-export default function SignUpDialog({ open, setOpen }) {
+export default function PatientDataDialog({ open, setOpen }) {
+  const [otp, setOtp] = useState("");
+
+  const router = useRouter();
+
   const closeModal = () => {
     setOpen(false);
   };
@@ -33,19 +38,8 @@ export default function SignUpDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
-                <div className="mt-2">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg text-center font-semibold leading-6 text-gray-900"
-                  >
-                    Verification
-                  </Dialog.Title>
-                  <p className="text-xs text-gray-500 mb-5">
-                    Please check you message for a five-digit security code and
-                    enter it below.
-                  </p>
-                </div>
+              <Dialog.Panel className="w-auto text-center transform bg-white p-3 align-middle shadow-xl transition-all">
+                <PatientData/>
               </Dialog.Panel>
             </Transition.Child>
           </div>

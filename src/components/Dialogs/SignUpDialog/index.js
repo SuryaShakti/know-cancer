@@ -44,11 +44,15 @@ export default function SignUpDialog({ open, setOpen }) {
                     as="h3"
                     className="text-lg text-center font-semibold leading-6 text-gray-900"
                   >
-                    Verification
+                    <img
+                      src={"/images/Check 1.png"}
+                      className="w-14 rounded-md"
+                    />
+                    Request sent successful!
                   </Dialog.Title>
                   <p className="text-xs text-gray-500 mb-5">
-                    Please check you message for a five-digit security code and
-                    enter it below.
+                    Our Admin will check and confirm about your profile within
+                    2-3 business day.
                   </p>
                 </div>
               </Dialog.Panel>

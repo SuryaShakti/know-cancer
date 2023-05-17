@@ -9,7 +9,6 @@ const LoginForm = () => {
     <div>
       <div className="font-bold text-gray-800 text-center ">Login</div>
 
-      <div className="font-bold text-gray-800 text-center ">Welcome back</div>
       <div className="bg-white p-10 rounded-md w-max">
         <div className="text-gray-500 ">E-mail or phone number</div>
         <div className="my-2">
@@ -34,7 +33,7 @@ const LoginForm = () => {
           </div> */}
           </div>
         </div>
-        <div className="text-gray-500">OTP</div>
+        <div className="text-gray-500">Password or OTP</div>
         <div className="my-2">
           <div className="relative mt-2 rounded-md shadow-sm">
             <input

@@ -1,12 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-// import PrimaryButton from "../../Buttons/PrimaryButton";
+import PrimaryButton from "../../Buttons/PrimaryButton";
 import { useRouter } from "next/router";
-import QAForm from "@/components/Forms/QAForm";
 
-export default function AddQADialog({ open, setOpen }) {
-  const [otp, setOtp] = useState("");
 
+export default function NameDialog({ open, setOpen }) {
   const router = useRouter();
 
   const closeModal = () => {
@@ -40,57 +38,44 @@ export default function AddQADialog({ open, setOpen }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
-                < QAForm/>
-                {/* <div className="mt-2">
+                <div className="mt-2">
                   <div className="w-full max-w-xs">
                     {" "}
-                    <div className="font-bold text-gray-800 text-left text-xl ">
-                      ADD Q&A
-                    </div>
                     <div className="bg-white p-10 rounded-md">
-                      <div className="text-black font-bold">Question:</div>
                       <div className="my-2">
                         <div className="relative mt-2 rounded-md shadow-sm">
                           <input
                             type="text"
+                            placeholder="Name"
                             name="price"
                             id="price"
                             className="block w-full rounded-md border-0 py-1.5 px-2  text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
-                      <div className="text-black font-bold">Answer:</div>
+
                       <div className="my-2">
                         <div className="relative mt-2 rounded-md shadow-sm">
                           <input
                             type="text"
                             name="price"
                             id="price"
+                            placeholder="Description"
                             className="block w-full rounded-md border-0 py-1.5 px-2  text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
-                      <div className="text-black font-bold">intent</div>
-                      <div className="my-2">
-                        <div className="relative mt-2 rounded-md shadow-sm">
-                          <input
-                            type="text"
-                            name="price"
-                            id="price"
-                            className="block w-full rounded-md border-0 py-1.5 px-2  text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                          />
-                        </div>
+                      <div className="rounded-md border my-5 w-10">
+                        {" "}
+                        <button>+</button>
                       </div>
-                      <div onClick={() => setOpen(true)}>
-                        <PrimaryButton
-                          text={"Approve"}
-                          color={"bg-[#575AE5]"}
-                        />
+
+                      <div onClick={() => setOpen(true)} className="py-6">
+                        <PrimaryButton text={"Add"} color={"bg-[#575AE5]"} />
                       </div>
                     </div>
                   </div>
-             
-                </div> */}
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

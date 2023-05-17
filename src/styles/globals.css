@@ -21,3 +21,12 @@ border-radius: 10px;
 box-shadow: 0px 4px 10px rgba(138, 142, 148, 0.05);
 border-radius: 20px;
 }
+.Table {
+  background: linear-gradient(180deg, #E40411 0%, #FDD6F2 100%);
+  /* opacity: 0.5; */
+border-radius: 10px 10px 0px 0px;
+}
+.mainbg{
+  background: linear-gradient(180deg, #E40411 0%, #FDD6F2 100%);
+  background: radial-gradient(50% 50% at 50% 50%, #F47676 0%, #E61323 100%)
+}

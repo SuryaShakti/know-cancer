@@ -157,7 +157,7 @@ const Profile = () => {
               <div>
                 <FileUploader
                   multiple={true}
-                  style={{ display: "block" }}
+                  style={{ display: "block", border: "solid" }}
                   handleChange={handleChange}
                   name="file"
                   // types={fileTypes}

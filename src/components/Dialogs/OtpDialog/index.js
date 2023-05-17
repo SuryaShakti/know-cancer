@@ -49,7 +49,7 @@ export default function OtpDialog({ open, setOpen }) {
                     Verification
                   </Dialog.Title>
                   <p className="text-xs text-gray-500 mb-5">
-                    Please check you message for a five-digit security code and
+                    Please check you message for a six-digit security code and
                     enter it below.
                   </p>
                   <OtpInput otp={otp} setOtp={setOtp} />
@@ -60,9 +60,9 @@ export default function OtpDialog({ open, setOpen }) {
                     className="my-5"
                     onClick={() => router.push("/dashboard")}
                   >
-                    <PrimaryButton text={"Verify"} color={"bg-[#575AE5]"} />
+                    <PrimaryButton text={"Login"} color={"bg-[#575AE5]"} />
                   </div>
-                  <div className="text-xs mx-auto text-gray-800  font-semibold cursor-pointer hover:bg-slate-100 px-2 py-2 rounded-md shadow w-max">
+                  <div className="text-base mx-auto text-gray-800  font-medium cursor-pointer hover:bg-slate-100 px-2 py-2 rounded-md shadow w-max">
                     RESEND OTP
                   </div>
                 </div>
