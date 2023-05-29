@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { SearchIcon } from "@heroicons/react/outline";
+import { DocumentDownloadIcon, SearchIcon } from "@heroicons/react/outline";
 import PatientDataDialog from "@/components/Dialogs/PatientDataDialog";
 import DoctorDataDialog from "@/components/Dialogs/DoctorDataDialog";
+import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
 import DoctorsChart from "@/components/Charts/DoctorsChart";
+
+const question = {
+  id: 1,
+  question: "What is Cancer?",
+  answer:
+    "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+};
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const router = useRouter();
   return (
@@ -30,7 +39,7 @@ const Dashboard = () => {
             name="search"
           />
         </div>
-        <div className="flex justify-end w-full" >
+        <div className="flex justify-end w-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -51,49 +60,209 @@ const Dashboard = () => {
 
       <div className="grid md:grid-cols-10 gap-5 py-10">
         <div className="md:col-span-7">
-          <div className="flex justify-between items-center">
-            <div className="shadow py-4 px-7 rounded-lg shadow-[0px_4px_4px_#936CAB] ">
+          <div className="flex justify-between space-x-3 items-center">
+            <div className="shadow w-1/2 py-4 px-4 rounded-lg shadow-[0px_4px_4px_#936CAB] ">
               Doctors Joined platform per week
               {/* <DoctorsChart/> */}
+              <div className="bg-gray-200 w-full h-40"></div>
             </div>{" "}
-            <div className="shadow py-4 px-7 rounded-lg shadow-[0px_4px_4px_#936CAB]">
+            <div className="shadow  w-1/2  py-4 px-4 rounded-lg shadow-[0px_4px_4px_#936CAB]">
               No. of patient
+              <div className="bg-gray-200 w-full h-40"></div>
             </div>
           </div>
         </div>
         <div className="md:col-span-3">
-          <div className="shadow  py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB] ">
-            Q&A
+          <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="">Q&A</div>
+            <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
+              Question- {question.question}
+            </div>
+            <div className="font-normal text-sm font-['Poppins']">
+              {question.answer.slice(0, 70)}{" "}
+              <button className="text-[#E61323]" onClick={() => setOpen2(true)}>
+                ....Read More
+              </button>
+            </div>{" "}
+            <div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* //------------------------------------------------------------------------ */}
-
+      {/* //-----------------------------   PATIENT DATA SECTION ------------------------------------------- */}
       <div>
-        Patient Data
-        <button
-          className="text-[#936CAB] font-medium text-sm px-10"
-          onClick={() => setOpen(true)}
-        >
-          View All
-        </button>
-        <div className="shadow py-4 px-7 h-60 border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB] "></div>
-      </div>
-      <PatientDataDialog open={open} setOpen={setOpen} />
-      <div>
-        Doctore Data
-        <button
-          className="text-[#936CAB] font-medium text-sm px-10"
-          onClick={() => setOpen1(true)}
-        >
-          View All
-        </button>
-        <div className="shadow py-4 px-7 h-80 border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB] ">
-          Data
+        <div className="flex justify-between mb-1">
+          <div className="text-gray-600 font-semibold text-xl">
+            Patient Data
+          </div>
+          <button
+            className="text-[#936CAB] font-medium text-sm px-10"
+            onClick={() => setOpen(true)}
+          >
+            View All
+          </button>
+        </div>
+        <div className="grid md:grid-cols-3 gap-3">
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">complaints</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">complaints</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">complaints</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
         </div>
       </div>
+      {/* -------------------------DOCTORS DATA--------------------- */}
+      <div className="mt-5">
+        <div className="flex justify-between mb-1">
+          <div className="text-gray-600 font-semibold text-xl">
+            Doctors Data
+          </div>
+          <button
+            className="text-[#936CAB] font-medium text-sm px-10"
+            onClick={() => setOpen(true)}
+          >
+            View All
+          </button>
+        </div>
+        <div className="grid md:grid-cols-3 gap-3">
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">Speciality</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">Speciality</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
+          <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="flex items-center space-x-3">
+              <img src={"/images/image2.png"} className="w-12 rounded-md" />
+              <div className="flex-1">
+                <div className="text-lg text-gray-800 font-semibold">
+                  Jhon Doe
+                </div>
+                <div className="text-lg text-gray-500 ">Female</div>
+              </div>
+              <div className="px-3 py-1 rounded-md border border-[#936CAB]">
+                Still in progress
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="">
+                <div className="text-sm text-[#936CAB]">Speciality</div>
+                <div className="text-sm text-gray-700">
+                  lorem ipsum some demo
+                </div>
+              </div>
+              <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <PatientDataDialog open={open} setOpen={setOpen} />
       <DoctorDataDialog open={open1} setOpen={setOpen1} />
+      <ReadMoreDialog open={open2} setOpen={setOpen2} />
     </div>
   );
 };

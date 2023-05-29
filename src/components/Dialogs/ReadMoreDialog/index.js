@@ -24,7 +24,7 @@ export default function SignUpDialog({ open, setOpen }) {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-4 ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -34,18 +34,22 @@ export default function SignUpDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-sm transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
                 <div className="mt-2">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg text-center font-semibold leading-6 text-gray-900"
+                    className="text-lg text-left font-semibold leading-6 text-gray-900"
                   >
-                    Verification
+                    Question details
                   </Dialog.Title>
-                  <p className="text-xs text-gray-500 mb-5">
-                    Please check you message for a five-digit security code and
-                    enter it below.
-                  </p>
+                  <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
+                    Question- What is Cancer?
+                  </div>
+                  <div className="font-normal text-sm font-['Poppins']">
+                    Consectetur aliquip ipsum amet id occaecat Lorem sit qui.
+                    Nostrud sint proident cupidatat voluptate fugiat commodo
+                    duis dolore est id. Do sunt cupidatat aute aliqua.
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
