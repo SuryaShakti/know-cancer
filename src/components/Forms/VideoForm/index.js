@@ -2,19 +2,17 @@ import { useState } from "react";
 import React from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 
-
-const QAForm = () => {
-      const [open, setOpen] = useState(false);
+const VideoForm = () => {
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="w-full max-w-lg p-5">
-      
       {" "}
       <div className="font-bold text-gray-800 text-left text-xl py-5">
-        ADD Q&A
+        ADD Video
       </div>
       <div className="shadow py-8 px-5 rounded-lg shadow-[0px_2px_4px_0px_#936CAB]">
-        <div className="text-black text-left font-bold">Question:</div>
+        <div className="text-black text-left font-bold">Video Tagline:</div>
         <div className="my-2">
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
@@ -25,7 +23,7 @@ const QAForm = () => {
             />
           </div>
         </div>
-        <div className="text-black text-left font-bold">Answer:</div>
+        <div className="text-black text-left font-bold">Video Link:</div>
         <div className="my-2">
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
@@ -49,10 +47,10 @@ const QAForm = () => {
         </div>
       </div>
       <div onClick={() => setOpen(true)} className="py-8 w-3/4 ml-8">
-        <PrimaryButton text={"Approve"} color={"bg-[#936CAB]"} />
+        <PrimaryButton text={"Add Video"} color={"bg-[#936CAB]"} />
       </div>
     </div>
   );
 };
 
-export default QAForm;
+export default VideoForm;

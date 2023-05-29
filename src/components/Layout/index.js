@@ -1,36 +1,17 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
-  BellIcon,
   CalendarIcon,
-  ChartBarIcon,
-  CurrencyDollarIcon,
-  FolderIcon,
   HomeIcon,
   InboxIcon,
   LogoutIcon,
-  MenuAlt2Icon,
-  PlusIcon,
-  UsersIcon,
+  UserIcon,
+  ChatIcon,
+  PlayIcon,
   XIcon,
+  MenuAlt2Icon
 } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
+
 import SideBar from "./SideBar";
 
 const navigation = [
@@ -38,13 +19,19 @@ const navigation = [
   {
     name: "Q&A",
     href: "/questions",
-    icon: UsersIcon,
+    icon: ChatIcon,
+    current: false,
+  },
+  {
+    name: "Video",
+    href: "/video",
+    icon: PlayIcon,
     current: false,
   },
   {
     name: "Profile",
     href: "/profile",
-    icon: PlusIcon,
+    icon: UserIcon,
     current: false,
   },
   {
@@ -141,13 +128,13 @@ export default function Layout({ children }) {
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex-shrink-0 flex items-center px-4">
+                {/* <div className="flex-shrink-0 flex items-center px-4">
                   <img
                     className="h-10 w-auto"
                     src="/images/logo.png"
                     alt="company logo"
                   />
-                </div>
+                </div> */}
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
                     {navigation.map((item) => (
@@ -183,7 +170,7 @@ export default function Layout({ children }) {
           </Dialog>
         </Transition.Root>
         {/* ------------------------- NAVBAR ------------------------ */}
-        <div className="sticky top-0 z-10 flex-shrink-0 flex h-auto bg-white  shadow-[0_2px_1px_rgba(0, 0, 0, 0.05)]">
+        <div className="sticky top-0 z-10 flex-shrink-0 flex h-auto bg-white border-b shadow-[0_2px_1px_rgba(0, 0, 0, 0.05)]">
           <button
             type="button"
             className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -194,13 +181,13 @@ export default function Layout({ children }) {
           </button>
           <div className="flex-1 flex justify-between">
             <div className="flex-1 flex items-center">
-              <div className="flex  flex-shrink-0 items-center">
+              {/* <div className="flex  flex-shrink-0 items-center">
                 <img
                   className="h-10 w-auto"
                   src="/images/logo.png"
                   alt="Company logo is here "
                 />
-              </div>
+              </div> */}
               {/* <div className="hidden md:flex items-center md:ml-32">
                 <label htmlFor="search-field" className="sr-only">
                   Search
@@ -269,7 +256,7 @@ export default function Layout({ children }) {
         </div>
         {/* Static sidebar for desktop */}
         <SideBar />
-        <div className="md:pl-64 bg-green flex flex-col flex-1">
+        <div className="md:pl-52 bg-green flex flex-col flex-1">
           <main className="flex-1 min-h-[calc(100vh-64px)] bg-offWhite p-5">
             {children}
           </main>

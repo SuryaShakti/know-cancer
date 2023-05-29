@@ -1,9 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-
 import { useRouter } from "next/router";
+import VideoForm from "@/components/Forms/VideoForm";
 
-export default function SignUpDialog({ open, setOpen }) {
+
+export default function AddVideoDialog({ open, setOpen }) {
   const [otp, setOtp] = useState("");
 
   const router = useRouter();
@@ -39,22 +40,7 @@ export default function SignUpDialog({ open, setOpen }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
-                <div className="mt-2">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg text-center font-semibold leading-6 text-gray-900"
-                  >
-                    <img
-                      src={"/images/Check 1.png"}
-                      className="w-14 rounded-md"
-                    />
-                    Request sent successful!
-                  </Dialog.Title>
-                  <p className="text-xs text-gray-500 mb-5">
-                    Our Admin will check and confirm about your profile within
-                    2-3 business day.
-                  </p>
-                </div>
+   <VideoForm/>
               </Dialog.Panel>
             </Transition.Child>
           </div>

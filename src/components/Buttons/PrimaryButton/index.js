@@ -9,7 +9,7 @@ const PrimaryButton = ({ text, color }) => {
     <button
       className={classNames(
         color,
-        "rounded-md text-white w-full py-2 bg-[#E61323] hover:bg-[#E61323]-800"
+        "rounded-md text-white w-full py-2 bg-[#936CAB] hover:bg-[#936CAB]-800"
       )}
     >
       {text}

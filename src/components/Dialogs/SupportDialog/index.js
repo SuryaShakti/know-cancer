@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function SignUpDialog({ open, setOpen }) {
+export default function SupportDialog({ open, setOpen }) {
   const closeModal = () => {
     setOpen(false);
   };

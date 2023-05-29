@@ -1,10 +1,11 @@
-import React from 'react';
-import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import React from "react";
+import PrimaryButton from "@/components/Buttons/PrimaryButton";
 
 const Terms = () => {
   return (
     <div className="text-black text-base font-normal py-1 font-['Poppins']">
-      <p>
+      <h1 className="text-2xl font-bold">Terms & Conditions</h1>
+      <p className="pt-5">
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -73,11 +74,11 @@ const Terms = () => {
         quia dolor sit amet, consectetur, adipisci velit, sed quia non.
       </p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      <div onClick={() => setOpen(true)} className='w-1/4 flex flex-row'>
-        <PrimaryButton text={"Edit & Done"}  />
+      <div onClick={() => setOpen(true)} className="w-1/4 flex flex-row">
+        <PrimaryButton text={"Edit & Done"} />
       </div>
     </div>
   );
-}
+};
 
-export default Terms
+export default Terms;

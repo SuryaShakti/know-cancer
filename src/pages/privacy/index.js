@@ -4,7 +4,8 @@ import PrimaryButton from '@/components/Buttons/PrimaryButton';
 const Privacy = () => {
   return (
     <div className="text-black text-base font-normal py-1 font-['Poppins']">
-      <p>
+      <h1 className='text-2xl font-bold'>Privacy Policy</h1>
+      <p className='pt-5'>
         {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -73,7 +74,7 @@ const Privacy = () => {
         quia dolor sit amet, consectetur, adipisci velit, sed quia non.
       </p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      <div onClick={() => setOpen(true)} className="w-1/4 flex flex-row">
+      <div onClick={() => setOpen(true)} className="w-1/4 mt-5 ml-96">
         <PrimaryButton text={"Edit & Done"} />
       </div>
     </div>
