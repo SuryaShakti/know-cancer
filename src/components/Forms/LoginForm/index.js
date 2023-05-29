@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import { useRouter } from "next/router";
-
+import OtpDialog from "@/components/Dialogs/OtpDialog";
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-
   return (
-    <div>
+    <div className="relative">
       <img
         src={"/images/loginround.png"}
-        className="w-28 rounded-md absolute m"
+        className="w-28 rounded-md absolute -top-14 left-1/2 -translate-x-1/2 "
       />
 
       <div className="bg-white p-10 py-10 rounded-md w-full">
-        <div className="text-black pt-10">E-mail or phone number</div>
+        <div className="text-black pt-10">Phone number</div>
         <div className="my-2">
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
@@ -39,28 +38,24 @@ const LoginForm = () => {
           </div> */}
           </div>
         </div>
-        <div className="text-black">Password or OTP</div>
-        <div className="my-2">
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <input
-              type="text"
-              name="price"
-              id="price"
-              className="block w-full rounded-md border-0 py-1.5 pl-20  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
+            {/* <div className="text-black">OTP</div>
+            <div className="my-2">
+              <div className="relative mt-2 rounded-md shadow-sm">
+                <input
+                  type="text"
+                  name="price"
+                  id="price"
+                  className="block w-full rounded-md border-0 py-1.5 pl-20  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div> */}
 
-        <div
-    
-          className="py-8"
-          onClick={() => router.push("/dashboard")}
-        >
-          <PrimaryButton text={"Login"} color={"bg-[#575AE5]"} />
+        <div className="py-8" onClick={() => setOpen(true )}>
+          <PrimaryButton text={"Send OTP"} color={"bg-[#575AE5]"} />
         </div>
       </div>
 
-      {/* <OtpDialog open={open} setOpen={setOpen} /> */}
+      <OtpDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
