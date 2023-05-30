@@ -47,11 +47,34 @@ const Review = () => {
   return (
     <div>
       {" "}
-      <div className="flex justify-between items-center">
-        <div className="justify-start font-semibold text-2xl text-[#374151] ">
-          Review
+      <div className="flex flex-1 justify-between items-center">
+        <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
+          Q & A
         </div>
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center md:ml-32">
+          <div className="flex border rounded-full px-5 mx-8 w-full">
+            <div className="inset-y-0 left-1 flex items-center pointer-events-none">
+              <SearchIcon
+                className="h-5 w-5 text-black font-light"
+                aria-hidden="true"
+              />
+            </div>
+            <input
+              id="search-field"
+              className="w-80 pr-2 h-full rounded-full pl-5 py-2 bg-gray border-black text-gray-900 placeholder-[#999999] focus:outline-none focus:placeholder-gray-300 focus:ring-0 focus:border-transparent"
+              placeholder="Search patient, code, messages...."
+              type="search"
+              name="search"
+            />
+          </div>
+          <div
+            className="flex font-normal text-sm w-full bg-[#936CAB] mr-2"
+            onClick={() => setOpen(true)}
+          >
+            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
+              + Add New Q&A
+            </button>
+          </div>{" "}
           <div className="flex justify-end w-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +92,7 @@ const Review = () => {
             </svg>
           </div>
         </div>
+
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
       <div className="grid md:grid-cols-3 gap-10 mt-10">

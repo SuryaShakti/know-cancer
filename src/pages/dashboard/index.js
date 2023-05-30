@@ -4,7 +4,6 @@ import { DocumentDownloadIcon, SearchIcon } from "@heroicons/react/outline";
 import PatientDataDialog from "@/components/Dialogs/PatientDataDialog";
 import DoctorDataDialog from "@/components/Dialogs/DoctorDataDialog";
 import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
-import DoctorsChart from "@/components/Charts/DoctorsChart";
 
 const question = {
   id: 1,
@@ -73,19 +72,24 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="md:col-span-3">
-          <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
-            <div className="">Q&A</div>
-            <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
+          <div className="shadow py-9 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className="font-bold text-lg">Q&A</div>
+            <div className="h-7 py-3 text-[#E61323] text-lg font-['Poppins']">
               Question- {question.question}
             </div>
-            <div className="font-normal text-sm font-['Poppins']">
-              {question.answer.slice(0, 70)}{" "}
-              <button className="text-[#E61323]" onClick={() => setOpen2(true)}>
-                ....Read More
+            <div className="font-normal text-sm font-['Poppins'] py-3">
+              {question.answer.slice(0, 110)}{" "}
+              <button className="text-[#936CAB]" onClick={() => setOpen2(true)}>
+                ....Read It
+              </button>
+              <button
+                className="text-[#936CAB] font-bold text-base pl-24 "
+                onClick={() => router.push("/questions")}
+              >
+                View All
               </button>
             </div>{" "}
-            <div>
-            </div>
+            <div></div>
           </div>
         </div>
       </div>
@@ -175,7 +179,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* -------------------------DOCTORS DATA--------------------- */}
+      {/* ---------------------------------------------DOCTORS DATA------------------------------ */}
       <div className="mt-5">
         <div className="flex justify-between mb-1">
           <div className="text-gray-600 font-semibold text-xl">
@@ -183,7 +187,7 @@ const Dashboard = () => {
           </div>
           <button
             className="text-[#936CAB] font-medium text-sm px-10"
-            onClick={() => setOpen(true)}
+            onClick={() => setOpen1(true)}
           >
             View All
           </button>

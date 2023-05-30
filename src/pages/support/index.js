@@ -11,61 +11,61 @@ const problems = [
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 2,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 3,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 4,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 5,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 6,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 7,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 8,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 9,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 10,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
   },
   {
-    id: 1,
+    id: 11,
     name: "Ethel Howard",
     problem: "This is the Problem",
     ticketno: 293810,
@@ -100,10 +100,12 @@ const Support = () => {
             />
           </div>
           <div
-            className="flex font-normal text-sm w-full bg-[#936CAB]"
+            className="flex font-normal text-sm w-full bg-[#936CAB] mr-2"
             onClick={() => setOpen(true)}
           >
-            <button>+ Add New Q&A</button>
+            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
+              + Add New Q&A
+            </button>
           </div>{" "}
           <div className="flex justify-end w-full">
             <svg
@@ -124,6 +126,10 @@ const Support = () => {
         </div>
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
+
+      {/* ----------------------------------------------------------------------------------------------------- */}
+
+      
       <div className="grid md:grid-cols-3 gap-10 mt-10">
         {problems.map((item, index) => (
           <div className="shadow py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">

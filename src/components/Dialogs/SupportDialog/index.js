@@ -6,6 +6,15 @@ export default function SupportDialog({ open, setOpen }) {
   const closeModal = () => {
     setOpen(false);
   };
+  const problems = [
+    {
+      id: 1,
+      name: "Ethel Howard",
+      problem: "This is the Problem",
+      ticketno: 293810,
+    },
+  ];
+
   const router = useRouter();
 
   return (
@@ -34,18 +43,32 @@ export default function SupportDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
-                <div className="mt-2">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg text-center font-semibold leading-6 text-gray-900"
-                  >
-                    Verification
-                  </Dialog.Title>
-                  <p className="text-xs text-gray-500 mb-5">
-                    Please check you message for a five-digit security code and
-                    enter it below.
-                  </p>
+              <Dialog.Panel className="w-full max-w-sm h-60 p-6 text-center transform overflow-hidden rounded-2xl shadow-[4px_4px_4px_2px_#936CAB] bg-white p-6 align-middle shadow transition-all">
+                <div className="flex space-x-2">
+                  <img src={"/images/image2.png"} className="w-14 rounded-md" />
+                  <div className="text-black font-bold text-lg p-1 ">
+                    Eathel Howard
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 my-2">
+                  <div className=" text-[#938F99] text-sm ">Problem</div>
+                  <div className=" text-[#938F99] text-sm ">Ticket Number</div>
+                  <div className=" text-black text-sm ">
+                    This is the Problem
+                  </div>
+                  <div className=" text-black text-sm ">293810</div>
+                </div>
+                <div className="grid md:grid-cols-2 my-2">
+                  <div className=" text-[#938F99] text-sm ">Attachment</div>
+                  <div className=" text-[#938F99] text-sm ">Ticket Status</div>
+                </div>
+                <div
+                  className="flex justify-end w-full py-6"
+                  onClick={() => setOpen1(true)}
+                >
+                  <button className="bg-[#936CAB] rounded-md border text-white px-7 py-1">
+                    Resolve
+                  </button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

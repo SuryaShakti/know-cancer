@@ -39,10 +39,12 @@ const Profile = () => {
             />
           </div>
           <div
-            className="flex font-normal text-sm w-full bg-[#936CAB]"
+            className="flex font-normal text-sm w-full bg-[#936CAB] mr-2"
             onClick={() => setOpen(true)}
           >
-            <button>+ Add New Q&A</button>
+            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
+              + Add New Q&A
+            </button>
           </div>{" "}
           <div className="flex justify-end w-full">
             <svg
@@ -63,12 +65,15 @@ const Profile = () => {
         </div>
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
+
+      {/* ------------------------------------------------------------------------------------------------ */}
+
       <div className="bg p-5">
         <div className=" grid md:grid-cols-4 ">
           <div>
             <div className="text-[#936CAB] ">Name</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm ">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <input
                   type="text"
                   name="price"
@@ -82,8 +87,8 @@ const Profile = () => {
         <div className=" grid md:grid-cols-4 ">
           <div>
             <div className="text-[#936CAB] ">Phone Number</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm ">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <input
                   type="text"
                   name="price"
@@ -97,8 +102,8 @@ const Profile = () => {
         <div className=" grid md:grid-cols-2 ">
           <div>
             <div className="text-[#936CAB] ">E-mail</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm ">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <input
                   type="text"
                   name="price"
@@ -112,8 +117,8 @@ const Profile = () => {
         <div className=" grid md:grid-cols-2 ">
           <div>
             <div className="text-[#936CAB] ">Address</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm ">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <input
                   type="text"
                   name="price"
@@ -127,8 +132,8 @@ const Profile = () => {
         <div className=" grid md:grid-cols-4 ">
           <div>
             <div className="text-[#936CAB] ">City</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm p-2">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm p-2">
                 <select
                   type="text"
                   name="price"
@@ -140,8 +145,8 @@ const Profile = () => {
           </div>{" "}
           <div>
             <div className="text-[#936CAB] ">Country</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm p-2 ">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm p-2 ">
                 <div className="absolute p-2 inset-y-0 left-1 flex items-center pointer-events-none">
                   <SearchIcon
                     className="h-5 w-5 text-[#936CAB] font-light"
@@ -159,8 +164,8 @@ const Profile = () => {
           </div>{" "}
           <div>
             <div className="text-[#936CAB] ">Postal Code</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm p-2">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm p-2">
                 <div className="absolute p-2 inset-y-0 left-1 flex items-center pointer-events-none">
                   <SearchIcon
                     className="h-5 w-5 text-[#936CAB] font-light"
@@ -180,8 +185,8 @@ const Profile = () => {
         <div className=" grid md:grid-cols-1 ">
           <div>
             <div className="text-[#936CAB] ">About Me</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm p-2">
+            <div className="my-1">
+              <div className="relative mt-1 rounded-md shadow-sm p-2">
                 <input
                   type="text"
                   name="price"
