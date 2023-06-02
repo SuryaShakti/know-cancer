@@ -126,11 +126,8 @@ const Support = () => {
         </div>
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
-
       {/* ----------------------------------------------------------------------------------------------------- */}
-
-      
-      <div className="grid md:grid-cols-3 gap-10 mt-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         {problems.map((item, index) => (
           <div className="shadow py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="flex space-x-2">
@@ -139,11 +136,16 @@ const Support = () => {
                 {item.name}
               </div>
             </div>
-            <div className="grid md:grid-cols-2">
-              <div className=" text-[#938F99] text-sm ">Problem</div>
-              <div className=" text-[#938F99] text-sm ">Ticket Number</div>
-              <div className=" text-black text-sm ">{item.problem}</div>
-              <div className=" text-black text-sm ">{item.ticketno}</div>
+            <div className="grid grid-cols-2">
+              <div className="grid md:grid-cols-1">
+                <div className=" text-[#938F99] text-sm ">Problem</div>
+                <div className=" text-black text-sm ">{item.problem}</div>
+              </div>
+              <div className="grid md:grid-cols-1">
+                <div className=" text-[#938F99] text-sm ">Ticket Number</div>
+
+                <div className=" text-black text-sm ">{item.ticketno}</div>
+              </div>
             </div>
             <div
               className="flex justify-end w-full py-6"

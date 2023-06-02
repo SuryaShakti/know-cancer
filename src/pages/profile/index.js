@@ -69,7 +69,7 @@ const Profile = () => {
       {/* ------------------------------------------------------------------------------------------------ */}
 
       <div className="bg p-5">
-        <div className=" grid md:grid-cols-4 ">
+        <div className=" grid sm:grid-cols-4 ">
           <div>
             <div className="text-[#936CAB] ">Name</div>
             <div className="my-1">
@@ -84,7 +84,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className=" grid md:grid-cols-4 ">
+        <div className=" grid sm:grid-cols-4 ">
           <div>
             <div className="text-[#936CAB] ">Phone Number</div>
             <div className="my-1">
@@ -99,7 +99,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className=" grid md:grid-cols-2 ">
+        <div className=" grid sm:grid-cols-2 ">
           <div>
             <div className="text-[#936CAB] ">E-mail</div>
             <div className="my-1">
@@ -114,7 +114,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className=" grid md:grid-cols-2 ">
+        <div className=" grid sm:grid-cols-2 ">
           <div>
             <div className="text-[#936CAB] ">Address</div>
             <div className="my-1">
@@ -129,11 +129,11 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className=" grid md:grid-cols-4 ">
+        <div className=" grid sm:grid-cols-4 sm:gap-2">
           <div>
             <div className="text-[#936CAB] ">City</div>
             <div className="my-1">
-              <div className="relative mt-1 rounded-md shadow-sm p-2">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <select
                   type="text"
                   name="price"
@@ -146,7 +146,7 @@ const Profile = () => {
           <div>
             <div className="text-[#936CAB] ">Country</div>
             <div className="my-1">
-              <div className="relative mt-1 rounded-md shadow-sm p-2 ">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <div className="absolute p-2 inset-y-0 left-1 flex items-center pointer-events-none">
                   <SearchIcon
                     className="h-5 w-5 text-[#936CAB] font-light"
@@ -165,7 +165,7 @@ const Profile = () => {
           <div>
             <div className="text-[#936CAB] ">Postal Code</div>
             <div className="my-1">
-              <div className="relative mt-1 rounded-md shadow-sm p-2">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <div className="absolute p-2 inset-y-0 left-1 flex items-center pointer-events-none">
                   <SearchIcon
                     className="h-5 w-5 text-[#936CAB] font-light"
@@ -186,7 +186,7 @@ const Profile = () => {
           <div>
             <div className="text-[#936CAB] ">About Me</div>
             <div className="my-1">
-              <div className="relative mt-1 rounded-md shadow-sm p-2">
+              <div className="relative mt-1 rounded-md shadow-sm ">
                 <input
                   type="text"
                   name="price"

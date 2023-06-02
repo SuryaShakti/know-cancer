@@ -49,7 +49,7 @@ const Review = () => {
       {" "}
       <div className="flex flex-1 justify-between items-center">
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
-          Q & A
+          Review
         </div>
         <div className="hidden md:flex items-center md:ml-32">
           <div className="flex border rounded-full px-5 mx-8 w-full">
@@ -95,7 +95,7 @@ const Review = () => {
 
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
-      <div className="grid md:grid-cols-3 gap-10 mt-10">
+      <div className="grid xl:grid-cols-3 sm:grid-cols-2 gap-10 mt-10">
         {reviews.map((item, index) => (
           <div className="shadow py-4 px-3 mx-5 rounded shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="grid grid-cols-10">

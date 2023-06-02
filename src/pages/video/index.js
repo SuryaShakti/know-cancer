@@ -54,10 +54,10 @@ const Video = () => {
         </div>
         <AddVideoDialog open={open} setOpen={setOpen} />
       </div>
-      <div className="grid md:grid-cols-4 gap-4 mt-10">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
         <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
           <div className="bg-gray-200 w-full h-28 rounded-md"></div>
-          <div className="grid md:grid-cols-2 ">
+          <div className="grid grid-cols-2 ">
             <div
               onClick={() => setOpen1(true)}
               className="text-sm font-normal text-white bg-[#936CAB] flex m-2 p-2 px-7 rounded w-fit"

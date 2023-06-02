@@ -20,7 +20,7 @@ const Dashboard = () => {
   const router = useRouter();
   return (
     <div className="p-2">
-      <div className=" flex justify-between items-center">
+      <div className="flex justify-between items-center">
         <div className="justify-start font-bold text-[#374151] ">Dashboard</div>
 
         <div className="flex border rounded-full px-5 mx-8 w-full">
@@ -56,9 +56,8 @@ const Dashboard = () => {
         </div>
       </div>
       {/* //---------------------------------------------------------------------------------- */}
-
-      <div className="grid md:grid-cols-10 gap-5 py-10">
-        <div className="md:col-span-7">
+      <div className="grid lg:grid-cols-10 gap-5 py-10">
+        <div className="lg:col-span-7">
           <div className="flex justify-between space-x-3 items-center">
             <div className="shadow w-1/2 py-4 px-4 rounded-lg shadow-[0px_4px_4px_#936CAB] ">
               Doctors Joined platform per week
@@ -71,8 +70,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="md:col-span-3">
-          <div className="shadow py-9 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+        <div className="lg:col-span-3">
+          <div className="shadow py-5 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="font-bold text-lg">Q&A</div>
             <div className="h-7 py-3 text-[#E61323] text-lg font-['Poppins']">
               Question- {question.question}
@@ -82,12 +81,17 @@ const Dashboard = () => {
               <button className="text-[#936CAB]" onClick={() => setOpen2(true)}>
                 ....Read It
               </button>
-              <button
-                className="text-[#936CAB] font-bold text-base pl-24 "
-                onClick={() => router.push("/questions")}
+              <div
+                className="flex justify-end w-full py-2"
+                onClick={() => setOpen1(true)}
               >
-                View All
-              </button>
+                <button
+                  onClick={() => router.push("/questions")}
+                  className="text-[#936CAB] font-bold"
+                >
+                  Read more
+                </button>
+              </div>
             </div>{" "}
             <div></div>
           </div>
@@ -107,7 +111,7 @@ const Dashboard = () => {
             View All
           </button>
         </div>
-        <div className="grid md:grid-cols-3 gap-3">
+        <div className="grid lg:grid-cols-3 gap-3">
           <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="flex items-center space-x-3">
               <img src={"/images/image2.png"} className="w-12 rounded-md" />
@@ -192,7 +196,7 @@ const Dashboard = () => {
             View All
           </button>
         </div>
-        <div className="grid md:grid-cols-3 gap-3">
+        <div className="grid lg:grid-cols-3 gap-3">
           <div className="py-4 px-4  border-[#E40411] rounded shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="flex items-center space-x-3">
               <img src={"/images/image2.png"} className="w-12 rounded-md" />

@@ -74,8 +74,13 @@ const Terms = () => {
         quia dolor sit amet, consectetur, adipisci velit, sed quia non.
       </p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      <div onClick={() => setOpen(true)} className="w-1/4 flex flex-row">
-        <PrimaryButton text={"Edit & Done"} />
+      <div
+        className="flex justify-end w-full py-2"
+        onClick={() => setOpen(true)}
+      >
+        <button className="bg-[#936CAB] rounded-md border text-white px-10 py-1">
+          Edit & Done
+        </button>
       </div>
     </div>
   );

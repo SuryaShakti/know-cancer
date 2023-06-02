@@ -88,8 +88,8 @@ const Questions = () => {
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
           Q & A
         </div>
-        <div className="hidden md:flex items-center md:ml-32">
-          <div className="flex border rounded-full px-5 mx-8 w-full">
+        <div className=" sm:flex items-center md:ml-32">
+          <div className="sm:display-block flex border rounded-full px-5 mx-8 w-full">
             <div className="inset-y-0 left-1 flex items-center pointer-events-none">
               <SearchIcon
                 className="h-5 w-5 text-black font-light"
@@ -105,7 +105,7 @@ const Questions = () => {
             />
           </div>
           <div
-            className="flex font-normal text-sm w-full bg-[#936CAB] mr-2"
+            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 "
             onClick={() => setOpen(true)}
           >
             <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
@@ -132,7 +132,10 @@ const Questions = () => {
 
         <AddQADialog open={open} setOpen={setOpen} />
       </div>
-      <div className="grid md:grid-cols-4 gap-4 mt-10">
+
+      {/* -------------------------------------------------------------------------------------------------- */}
+
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
         {questions.map((item, index) => (
           <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
