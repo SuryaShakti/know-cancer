@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function SignUpDialog({ open, setOpen }) {
+export default function SignUpDialog({ open, setOpen, current }) {
   const closeModal = () => {
     setOpen(false);
   };
@@ -43,12 +43,10 @@ export default function SignUpDialog({ open, setOpen }) {
                     Question details
                   </Dialog.Title>
                   <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
-                    Question- What is Cancer?
+                    {current?.question}
                   </div>
                   <div className="font-normal text-sm font-['Poppins']">
-                    Consectetur aliquip ipsum amet id occaecat Lorem sit qui.
-                    Nostrud sint proident cupidatat voluptate fugiat commodo
-                    duis dolore est id. Do sunt cupidatat aute aliqua.
+                    {current?.answer}
                   </div>
                 </div>
               </Dialog.Panel>
