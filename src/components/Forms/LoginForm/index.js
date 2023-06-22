@@ -2,10 +2,35 @@ import React, { useState } from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
 import { useRouter } from "next/router";
 import OtpDialog from "@/components/Dialogs/OtpDialog";
+import { loginHandler } from "@/apis/auth";
+import { BeatLoader } from "react-spinners";
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const saveHandler = async (e) => {
+    // await loginHandler(email, password);
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const response = await loginHandler(email, password);
+      console.log(response);
+      localStorage.setItem("token", response.accessToken);
+      localStorage.setItem("user", response.user);
+      router.push("/dashboard");
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative">
@@ -14,46 +39,50 @@ const LoginForm = () => {
         className="w-28 rounded-md absolute -top-14 left-1/2 -translate-x-1/2 "
       />
 
-      <div className="bg-white p-10 py-10 rounded-md w-full">
-        <div className="text-black pt-10">Phone number</div>
-        <div className="my-2">
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <input
-              type="text"
-              name="price"
-              id="price"
-              className="block w-full rounded-md border-0 py-1.5 pl-20  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-            />
-            {/* <div className="absolute inset-y-0 left-0 flex items-center border-r px-2">
-            <select
-              id="currency"
-              name="currency"
-              className="h-full rounded-l-md border-0 bg-transparent py-0 pl-1  border-y border-l border-r border-gray-300 bg-gray-200  text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
-            >
-              <option>+91</option>
-              <option>00</option>
-              <option>442</option>
-            </select> 
-             +91
-          </div> */}
+      <form
+        onSubmit={(e) => saveHandler(e)}
+        className="bg-white p-10 py-10 rounded-md w-full"
+      >
+        <div>
+          <div className="text-black pt-10">Email</div>
+          <div className="my-2">
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-72 rounded-md border-0 py-1.5 pl-4  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
         </div>
-            {/* <div className="text-black">OTP</div>
-            <div className="my-2">
-              <div className="relative mt-2 rounded-md shadow-sm">
-                <input
-                  type="text"
-                  name="price"
-                  id="price"
-                  className="block w-full rounded-md border-0 py-1.5 pl-20  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div> */}
-
-        <div className="py-8" onClick={() => setOpen(true )}>
-          <PrimaryButton text={"Send OTP"} color={"bg-[#575AE5]"} />
+        <div>
+          <div className="text-black pt-2">Password</div>
+          <div className="my-2">
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="password"
+                id="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="block w-72 rounded-md border-0 py-1.5 pl-4  text-gray-900 ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
         </div>
-      </div>
+
+        <button
+          type="submit"
+          className="rounded-md mt-5 text-white w-full py-2 bg-[#936CAB] hover:bg-[#936CAB]-800"
+        >
+          {loading ? <BeatLoader className="text-white" /> : "Login"}
+        </button>
+      </form>
 
       <OtpDialog open={open} setOpen={setOpen} />
     </div>

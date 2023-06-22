@@ -23,7 +23,7 @@ const Dashboard = () => {
       <div className="flex justify-between items-center">
         <div className="justify-start font-bold text-[#374151] ">Dashboard</div>
 
-        <div className="flex border rounded-full px-5 mx-8 w-full">
+        <div className="hidden md:flex border rounded-full px-5 mx-8 w-full">
           <div className="inset-y-0 left-1 flex items-center pointer-events-none">
             <SearchIcon
               className="h-5 w-5 text-black font-light"
@@ -54,6 +54,21 @@ const Dashboard = () => {
             />
           </svg>
         </div>
+      </div>
+      <div className="md:hidden flex border rounded-full pl-5 mt-2  w-full">
+        <div className="inset-y-0 left-1 flex items-center pointer-events-none">
+          <SearchIcon
+            className="h-5 w-5 text-black font-light"
+            aria-hidden="true"
+          />
+        </div>
+        <input
+          id="search-field"
+          className="w-full pr-2 h-full rounded-full pl-5 py-2 bg-gray border-black text-gray-900 placeholder-[#999999] focus:outline-none focus:placeholder-gray-300 focus:ring-0 focus:border-transparent"
+          placeholder="Search patient, code, messages...."
+          type="search"
+          name="search"
+        />
       </div>
       {/* //---------------------------------------------------------------------------------- */}
       <div className="grid lg:grid-cols-10 gap-5 py-10">

@@ -1,7 +1,8 @@
 import { SearchIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
+import { getAllQuestions } from "@/apis/qna";
 
 const questions = [
   {
@@ -81,15 +82,35 @@ const questions = [
 const Questions = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
+  // CURRENT QUESTION STATE FOR READ MORE BUTTON (FOR PASSING TO DIALOG)
+  const [current, setCurrent] = useState();
+
+  // LOADING STATE FOR LOADER
+  const [loading, setLoading] = useState("false");
+  // DATA STATE WHERE ALL QUESTIONS WILL BE STORED AFTER API CALL
+  const [data, setData] = useState([]);
+
+  // FUNCTION FOR API CALL FROM apis/qna FILE
+  const getData = async () => {
+    const data = await getAllQuestions();
+    console.log(data);
+    // SETTING STATE SETDATA BELOW
+    setData(data.data);
+  };
+
+  // CALLING ABOVE FUNCTION IN USEEFFECT
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div>
-      <div className="flex flex-1 justify-between items-center">
+      <div className=" md:flex flex-1 justify-between items-center">
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
           Q & A
         </div>
         <div className=" sm:flex items-center md:ml-32">
-          <div className="sm:display-block flex border rounded-full px-5 mx-8 w-full">
+          <div className="sm:display-block flex border rounded-full px-5 md:mx-8 my-3 md:my-0 w-full">
             <div className="inset-y-0 left-1 flex items-center pointer-events-none">
               <SearchIcon
                 className="h-5 w-5 text-black font-light"
@@ -112,22 +133,6 @@ const Questions = () => {
               + Add New Q&A
             </button>
           </div>{" "}
-          <div className="flex justify-end w-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#936CAB"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-              />
-            </svg>
-          </div>
         </div>
 
         <AddQADialog open={open} setOpen={setOpen} />
@@ -136,14 +141,20 @@ const Questions = () => {
       {/* -------------------------------------------------------------------------------------------------- */}
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
-        {questions.map((item, index) => (
+        {data.map((item, index) => (
           <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
               Question- {item.question}
             </div>
             <div className="font-normal text-sm font-['Poppins']">
               {item.answer.slice(0, 70)}{" "}
-              <button className="text-[#E61323]" onClick={() => setOpen1(true)}>
+              <button
+                className="text-[#E61323]"
+                onClick={() => {
+                  setOpen1(true);
+                  setCurrent(item);
+                }}
+              >
                 ....Read More
               </button>
             </div>
@@ -155,7 +166,9 @@ const Questions = () => {
           </div>
         ))}
       </div>
-      <ReadMoreDialog open={open1} setOpen={setOpen1} />
+
+      {/* PASSING QUESTION OBJECT TO THE DIALOG FOR FULL VIEW (READ MORE) */}
+      <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} />
     </div>
   );
 };

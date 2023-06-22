@@ -48,7 +48,7 @@ const QAForm = () => {
           </div>
         </div>
       </div>
-      <div onClick={() => setOpen(true)} className="py-8 w-3/4 ml-8">
+      <div onClick={() => setOpen(true)} className="py-8 w-full">
         <PrimaryButton text={"Add"} color={"bg-[#936CAB]"} />
       </div>
     </div>
