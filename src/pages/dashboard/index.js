@@ -86,12 +86,12 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="lg:col-span-3">
-          <div className="shadow py-5 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+          <div className="shadow py-1 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
             <div className="font-bold text-lg">Q&A</div>
-            <div className="h-7 py-3 text-[#E61323] text-lg font-['Poppins']">
+            <div className="h-7 py-2 text-[#E61323] text-lg font-['Poppins']">
               Question- {question.question}
             </div>
-            <div className="font-normal text-sm font-['Poppins'] py-3">
+            <div className="font-normal text-sm font-['Poppins'] py-8">
               {question.answer.slice(0, 110)}{" "}
               <button className="text-[#936CAB]" onClick={() => setOpen2(true)}>
                 ....Read It
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>{" "}
-            <div></div>
+           
           </div>
         </div>
       </div>
