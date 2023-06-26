@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import QAForm from "@/components/Forms/QAForm";
 
-export default function AddQADialog({ open, setOpen }) {
+export default function AddQADialog({ open, setOpen, setData, data }) {
   const [otp, setOtp] = useState("");
 
   const router = useRouter();
@@ -39,9 +39,8 @@ export default function AddQADialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              
               <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-2 align-middle shadow-xl transition-all">
-                < QAForm/>
+                <QAForm data={data} setData={setData} setOpen={setOpen} />
                 {/* <div className="mt-2">
                   <div className="w-full max-w-xs">
                     {" "}

@@ -2,12 +2,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import VideoForm from "@/components/Forms/VideoForm";
+import { addNewVideo } from "@/apis/videos";
 
-
-export default function AddVideoDialog({ open, setOpen }) {
+export default function AddVideoDialog({ open, setOpen, data, setData }) {
   const [otp, setOtp] = useState("");
-
-  const router = useRouter();
 
   const closeModal = () => {
     setOpen(false);
@@ -39,8 +37,8 @@ export default function AddVideoDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
-   <VideoForm/>
+              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl pb-10 bg-white  align-middle shadow-xl transition-all">
+                <VideoForm data={data} setData={setData} setIsOpen={setOpen} />
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import SupportDialog from "@/components/Dialogs/SupportDialog";
+import { getAllSupport } from "@/apis/support";
 
 const problems = [
   {
@@ -76,6 +77,28 @@ const Support = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
 
+  const [current, setCurrent] = useState();
+
+  const [loading, setLoading] = useState("false");
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllSupport();
+      console.log(data);
+      setData(data.data);
+      setLoading(false);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong", "bottom-right");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
       {" "}
@@ -128,37 +151,56 @@ const Support = () => {
       </div>
       {/* ----------------------------------------------------------------------------------------------------- */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-        {problems.map((item, index) => (
-          <div className="shadow py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
-            <div className="flex space-x-2">
-              <img src={"/images/image2.png"} className="w-14 rounded-md" />
-              <div className="text-black font-bold text-lg p-1 ">
-                {item.name}
+        {data &&
+          data?.map((item, index) => (
+            <div className=" py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+              <div className="flex space-x-2">
+                <img
+                  src={
+                    item?.user?.avatar
+                      ? item?.user?.avatar
+                      : "/images/image2.png"
+                  }
+                  className="w-14 rounded-md"
+                />
+                <div className="text-black font-bold text-lg p-1 ">
+                  {item?.user?.name ? item?.user?.name : "N/A"}
+                </div>
+                <div className="text-gray-800 rounded-md px-2 py-1 h-max border">
+                  {item?.status === 2 ? "Solved" : "Unsolved"}
+                </div>
+              </div>
+              <div className="grid grid-cols-1">
+                <div className="grid md:grid-cols-1">
+                  <div className="grid md:grid-cols-1">
+                    <div className=" text-[#938F99] text-sm ">
+                      Ticket Number
+                    </div>
+                    <div className=" text-black text-sm ">
+                      {item.ticketNumber}
+                    </div>
+                  </div>
+                  <div className=" text-[#938F99] text-sm ">Problem</div>
+                  <div className=" text-black text-sm ">
+                    {item.complainAbout}
+                  </div>
+                </div>
+              </div>
+              <div
+                className="flex justify-end w-full py-6"
+                onClick={() => {
+                  setOpen1(true);
+                  setCurrent(item);
+                }}
+              >
+                <button className="bg-[#936CAB] rounded-md border text-white px-7 py-1">
+                  Resolve
+                </button>
               </div>
             </div>
-            <div className="grid grid-cols-2">
-              <div className="grid md:grid-cols-1">
-                <div className=" text-[#938F99] text-sm ">Problem</div>
-                <div className=" text-black text-sm ">{item.problem}</div>
-              </div>
-              <div className="grid md:grid-cols-1">
-                <div className=" text-[#938F99] text-sm ">Ticket Number</div>
-
-                <div className=" text-black text-sm ">{item.ticketno}</div>
-              </div>
-            </div>
-            <div
-              className="flex justify-end w-full py-6"
-              onClick={() => setOpen1(true)}
-            >
-              <button className="bg-[#936CAB] rounded-md border text-white px-7 py-1">
-                Resolve
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
-      <SupportDialog open={open1} setOpen={setOpen1} />
+      <SupportDialog open={open1} setOpen={setOpen1} current={current} />
     </div>
   );
 };

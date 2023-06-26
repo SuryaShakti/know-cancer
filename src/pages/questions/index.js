@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
 import { getAllQuestions } from "@/apis/qna";
+import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const questions = [
   {
@@ -92,10 +94,16 @@ const Questions = () => {
 
   // FUNCTION FOR API CALL FROM apis/qna FILE
   const getData = async () => {
-    const data = await getAllQuestions();
-    console.log(data);
-    // SETTING STATE SETDATA BELOW
-    setData(data.data);
+    try {
+      setLoading(true);
+      const data = await getAllQuestions();
+      console.log(data);
+      setData(data.data);
+      setLoading(false);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong", "bottom-right");
+      setLoading(false);
+    }
   };
 
   // CALLING ABOVE FUNCTION IN USEEFFECT
@@ -135,37 +143,42 @@ const Questions = () => {
           </div>{" "}
         </div>
 
-        <AddQADialog open={open} setOpen={setOpen} />
+        <AddQADialog open={open} setOpen={setOpen} data={data} setData={setData} />
       </div>
 
       {/* -------------------------------------------------------------------------------------------------- */}
-
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
-        {data.map((item, index) => (
-          <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
-            <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
-              Question- {item.question}
+      {loading ? (
+        <div className="w-full flex justify-center py-20">
+          <ClipLoader />
+        </div>
+      ) : (
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
+          {data.map((item, index) => (
+            <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+              <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
+                Question- {item.question}
+              </div>
+              <div className="font-normal text-sm font-['Poppins']">
+                {item.answer.slice(0, 70)}{" "}
+                <button
+                  className="text-[#E61323]"
+                  onClick={() => {
+                    setOpen1(true);
+                    setCurrent(item);
+                  }}
+                >
+                  ....Read More
+                </button>
+              </div>
+              <div className="flex justify-end">
+                <button className="text-sm font-normal text-white bg-[#936CAB] flex m-2 p-2 px-7 rounded  w-fit">
+                  Approve
+                </button>
+              </div>
             </div>
-            <div className="font-normal text-sm font-['Poppins']">
-              {item.answer.slice(0, 70)}{" "}
-              <button
-                className="text-[#E61323]"
-                onClick={() => {
-                  setOpen1(true);
-                  setCurrent(item);
-                }}
-              >
-                ....Read More
-              </button>
-            </div>
-            <div className="flex justify-end">
-              <button className="text-sm font-normal text-white bg-[#936CAB] flex m-2 p-2 px-7 rounded  w-fit">
-                Approve
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* PASSING QUESTION OBJECT TO THE DIALOG FOR FULL VIEW (READ MORE) */}
       <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} />

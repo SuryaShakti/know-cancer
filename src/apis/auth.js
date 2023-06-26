@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://13.200.83.188:3030/v1";
+const API_URL = "http://13.200.83.188/v1";
 
 export const loginHandler = async (email, password) => {
   try {
@@ -9,6 +9,7 @@ export const loginHandler = async (email, password) => {
       email,
       password,
       deviceType: 1,
+      deviceId: '11 '
     });
     return response.data;
   } catch (error) {
