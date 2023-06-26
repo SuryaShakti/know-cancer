@@ -1,9 +1,55 @@
 import { SearchIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddVideoDialog from "@/components/Dialogs/AddVideoDialog";
+import { getAllVideos } from "@/apis/videos";
+import YouTube from "react-youtube";
+import { ClipLoader } from "react-spinners";
+
+const YouTubeVideo = ({ videoUrl }) => {
+  const getVideoIdFromUrl = (url) => {
+    const videoIdRegex =
+      /(?:\?v=|&v=|youtu\.be\/|\/embed\/|\/v\/|\/\d{1,2}\/|\/vi\/)([^#\&\?]{11})(?:[a-z]{0,10}=[^#\&\?]{0,100})?/i;
+    const match = url.match(videoIdRegex);
+    return match && match[1];
+  };
+
+  const videoId = getVideoIdFromUrl(videoUrl);
+
+  if (!videoId) {
+    return <p>Invalid YouTube video URL</p>;
+  }
+
+  const opts = {
+    height: "auto",
+    width: "100%",
+  };
+
+  return <YouTube videoId={videoId} opts={opts} />;
+};
 
 const Video = () => {
   const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [current, setCurrent] = useState();
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllVideos();
+      console.log(data);
+      setData(data.data);
+      setLoading(false);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong", "bottom-right");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div>
@@ -52,10 +98,25 @@ const Video = () => {
             </svg>
           </div>
         </div>
-        <AddVideoDialog open={open} setOpen={setOpen} />
+        <AddVideoDialog
+          open={open}
+          setOpen={setOpen}
+          data={data}
+          setData={setData}
+        />
       </div>
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
-        <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+      {loading ? (
+        <div className="flex justify-center w-full py-20">
+          <ClipLoader />
+        </div>
+      ) : (
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
+          {data.map((item, index) => (
+            <div key={index}>
+              <YouTubeVideo videoUrl={item.link} />
+            </div>
+          ))}
+          {/* <div className="py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
           <div className="bg-gray-200 w-full h-28 rounded-md"></div>
           <div className="grid grid-cols-2 ">
             <div
@@ -71,8 +132,9 @@ const Video = () => {
               <button>Delete</button>
             </div>
           </div>
+        </div> */}
         </div>
-      </div>
+      )}
     </div>
   );
 };

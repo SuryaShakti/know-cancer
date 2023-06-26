@@ -1,21 +1,30 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
+import { resolveSupport } from "@/apis/support";
+import { toast } from "react-toastify";
 
-export default function SupportDialog({ open, setOpen }) {
+export default function SupportDialog({ open, setOpen, current }) {
+  const [loading, setLoading] = useState(false);
   const closeModal = () => {
     setOpen(false);
   };
-  const problems = [
-    {
-      id: 1,
-      name: "Ethel Howard",
-      problem: "This is the Problem",
-      ticketno: 293810,
-    },
-  ];
 
   const router = useRouter();
+
+  const saveHandler = async (id) => {
+    try {
+      setLoading(true);
+      const response = await resolveSupport(id);
+      console.log(response);
+      setLoading(false);
+      toast.success("Support ticket resolved successfully");
+      setOpen(false);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong", "bottom-right");
+      setLoading(false);
+    }
+  };
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -43,42 +52,53 @@ export default function SupportDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm h-60 p-6 text-center transform rounded-2xl shadow-[4px_4px_4px_2px_#936CAB] bg-white p-6 align-middle shadow transition-all">
+              <Dialog.Panel className="w-full max-w-lg h-60 p-6 text-center transform rounded-2xl shadow-[4px_4px_4px_2px_#936CAB] bg-white p-6 align-middle shadow transition-all">
                 <div className="flex space-x-2">
-                  <img src={"/images/image2.png"} className="w-14 rounded-md" />
+                  <img
+                    src={
+                      current?.user?.avatar
+                        ? current?.user?.avatar
+                        : "/images/image2.png"
+                    }
+                    className="w-14 rounded-md"
+                  />
                   <div className="text-black font-bold text-lg p-1 ">
-                    Eathel Howard
+                    {current?.user?.name ? current?.user?.name : "N/A"}
                   </div>
                 </div>
                 <div className="grid grid-cols-2 my-2">
                   <div className="grid md:grid-cols-1">
                     <div className=" text-[#938F99] text-sm ">Problem</div>
                     <div className=" text-black text-sm ">
-                      This is the Problem
+                      {current?.complainAbout ? current?.complainAbout : "N/A"}
                     </div>
                   </div>
                   <div className="grid md:grid-cols-1">
                     <div className=" text-[#938F99] text-sm ">
                       Ticket Number
                     </div>
-                    <div className=" text-black text-sm ">293810</div>
+                    <div className=" text-black text-sm ">
+                      {current?.ticketNumber}
+                    </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 my-2">
                   <div className="grid md:grid-cols-1">
-                    <div className=" text-[#938F99] text-sm ">
-                      Attachment
-                    </div>                
+                    <div className=" text-[#938F99] text-sm ">Attachment</div>
+                    <img src={current?.attachments} />
                   </div>{" "}
                   <div className="grid md:grid-cols-1">
                     <div className=" text-[#938F99] text-sm ">
                       Ticket Status
                     </div>
+                    <div className="text-gray-800 rounded-md w-max mx-auto px-2 py-1 h-max border">
+                      {current?.status === 2 ? "Solved" : "Unsolved"}
+                    </div>
                   </div>
                 </div>
                 <div
                   className="flex justify-end w-full py-2"
-                  onClick={() => setOpen1(true)}
+                  onClick={() => saveHandler(current._id)}
                 >
                   <button className="bg-[#936CAB] rounded-md border text-white px-7 py-1">
                     Resolve
