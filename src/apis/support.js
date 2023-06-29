@@ -8,7 +8,7 @@ export const getAllSupport = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/support-ticket-management`,
+      url: `${API_URL}/v1/support-ticket-management`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

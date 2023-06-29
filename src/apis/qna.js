@@ -35,7 +35,7 @@ export const addNewQa = async (question, answer, intent) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${API_URL}/qna`,
+      url: `${API_URL}/v1/qna`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

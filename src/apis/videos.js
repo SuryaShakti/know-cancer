@@ -35,7 +35,7 @@ export const addNewVideo = async (tagLine, link, intent) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${API_URL}/video-management`,
+      url: `${API_URL}/v1/video-management`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
