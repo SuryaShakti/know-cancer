@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://13.200.83.188/v1";
+const API_URL = "https://api.knowcancer.braynixai.com";
 
 export const getAllSupport = async () => {
   try {
@@ -36,7 +36,7 @@ export const resolveSupport = async (id) => {
     let config = {
       method: "patch",
       maxBodyLength: Infinity,
-      url: `http://13.200.83.188/v1/support-ticket-management/${id}`,
+      url: `${API_URL}/v1/support-ticket-management/${id}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://13.200.83.188/v1";
+const API_URL = "https://api.knowcancer.braynixai.com";
 
 export const getAllVideos = async () => {
   try {
@@ -8,7 +8,7 @@ export const getAllVideos = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/video-management`,
+      url: `${API_URL}/v1/video-management`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

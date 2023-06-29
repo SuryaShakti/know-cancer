@@ -37,12 +37,12 @@ const navigation = [
     icon: InboxIcon,
     current: false,
   },
-  {
-    name: "Review",
-    href: "/review",
-    icon: InboxIcon,
-    current: false,
-  },
+  // {
+  //   name: "Review",
+  //   href: "/review",
+  //   icon: InboxIcon,
+  //   current: false,
+  // },
   {
     name: "Privacy & Policy",
     href: "/privacy",

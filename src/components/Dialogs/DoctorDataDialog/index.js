@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import DoctorData from "@/components/Tables/DoctorData";
 
-export default function DoctorDataDialog({ open, setOpen }) {
+export default function DoctorDataDialog({ open, setOpen, data }) {
   const [otp, setOtp] = useState("");
 
   const router = useRouter();
@@ -27,8 +27,8 @@ export default function DoctorDataDialog({ open, setOpen }) {
           <div className="fixed inset-0 bg-black bg-opacity-80" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+        <div className="fixed   inset-0 overflow-y-scroll">
+          <div className="flex min-h-full w-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -38,8 +38,8 @@ export default function DoctorDataDialog({ open, setOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-auto text-center transform bg-white p-3 align-middle shadow-xl transition-all">
-                <DoctorData />
+              <Dialog.Panel className="min-h-[80vh] max-w-[90vw] w-full text-center transform bg-white p-3 align-middle shadow-xl transition-all">
+                <DoctorData data={data} />
               </Dialog.Panel>
             </Transition.Child>
           </div>
