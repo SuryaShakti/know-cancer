@@ -2,188 +2,174 @@ import { SearchIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
-import { getAllQuestions } from "@/apis/qna";
+import { getAllQna } from "@/apis/qna";
 import { toast } from "react-toastify";
-import { ClipLoader } from "react-spinners";
+import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 
 const questions = [
   {
     id: 1,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 2,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 3,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 4,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 5,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 6,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
   {
     id: 7,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
-    id: 8,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
-    id: 9,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
-    id: 10,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
-    id: 11,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
-  },
-  {
-    id: 12,
-    question: "What is Cancer?",
-    answer:
-      "Consectetur aliquip ipsum amet id occaecat Lorem sit qui. Nostrud sint proident cupidatat voluptate fugiat commodo duis dolore est id. Do sunt cupidatat aute aliqua.",
+    qa: "What is Cancer?",
+    intent1: "#Whatis ",
+    intent2: " #Complex",
+    intent3: "#uncontrolled",
+    status: "Uploaded",
+    edit1: PencilAltIcon,
+    edit2: TrashIcon,
   },
 ];
 
 const Questions = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
-  // CURRENT QUESTION STATE FOR READ MORE BUTTON (FOR PASSING TO DIALOG)
-  const [current, setCurrent] = useState();
 
-  // LOADING STATE FOR LOADER
-  const [loading, setLoading] = useState("false");
-  // DATA STATE WHERE ALL QUESTIONS WILL BE STORED AFTER API CALL
-  const [data, setData] = useState([]);
+  // const [current,setCurrent] = useState();
+  // const [questions, setQuestions] = useState([]);
 
-  // FUNCTION FOR API CALL FROM apis/qna FILE
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const data = await getAllQuestions();
-      console.log(data);
-      setData(data.data);
-      setLoading(false);
-    } catch (error) {
-      toast.error(error ? error : "Something went wrong", "bottom-right");
-      setLoading(false);
-    }
-  };
+  // const getQuestions = async () => {
+  //   console.log("runned");
+  //   try {
+  //     const response = await getAllQna();
+  //     console.log(response);
+  //     setQuestions(response);
+  //   } catch (error) {
+  //     toast.error(error ? error : "Something went wrong");
+  //   }
+  // };
 
-  // CALLING ABOVE FUNCTION IN USEEFFECT
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getQuestions();
+  // }, []);
 
   return (
     <div>
-      <div className=" md:flex flex-1 justify-between items-center">
+      <div className="flex flex-1 justify-between items-center">
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
-          Q & A
+          Information
         </div>
         <div className=" sm:flex items-center md:ml-32">
-          <div className="sm:display-block flex border rounded-full px-5 md:mx-8 my-3 md:my-0 w-full">
-            <div className="inset-y-0 left-1 flex items-center pointer-events-none">
-              <SearchIcon
-                className="h-5 w-5 text-black font-light"
-                aria-hidden="true"
-              />
-            </div>
-            <input
-              id="search-field"
-              className="w-80 pr-2 h-full rounded-full pl-5 py-2 bg-gray border-black text-gray-900 placeholder-[#999999] focus:outline-none focus:placeholder-gray-300 focus:ring-0 focus:border-transparent"
-              placeholder="Search patient, code, messages...."
-              type="search"
-              name="search"
-            />
-          </div>
           <div
             className=" font-normal text-sm w-full bg-[#936CAB] mr-2 "
             onClick={() => setOpen(true)}
           >
             <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
-              + Add New Q&A
+              + Add New Question
             </button>
           </div>{" "}
         </div>
 
-        <AddQADialog open={open} setOpen={setOpen} data={data} setData={setData} />
+        <AddQADialog
+          open={open}
+          setOpen={setOpen}
+          // questions={questions}
+          // setQuestions={setQuestions}
+        />
       </div>
 
-      {/* -------------------------------------------------------------------------------------------------- */}
-      {loading ? (
-        <div className="w-full flex justify-center py-20">
-          <ClipLoader />
-        </div>
-      ) : (
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
-          {data.map((item, index) => (
-            <div className="shadow py-4 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
-              <div className="h-7 text-[#E61323] text-lg font-['Poppins']">
-                Question- {item.question}
-              </div>
-              <div className="font-normal text-sm font-['Poppins']">
-                {item.answer.slice(0, 70)}{" "}
-                <button
-                  className="text-[#E61323]"
-                  onClick={() => {
-                    setOpen1(true);
-                    setCurrent(item);
-                  }}
-                >
-                  ....Read More
-                </button>
-              </div>
-              <div className="flex justify-end">
-                <button className="text-sm font-normal text-white bg-[#936CAB] flex m-2 p-2 px-7 rounded  w-fit">
-                  Approve
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <div class="rounded-lg w-full mt-4 mx-4 ">
+        <table class="text-left">
+          <thead class="text-base text-black Table">
+            <tr>
+              <th scope="col" class="px-4 border ">
+                Question & Answer
+              </th>
+              <th scope="col" class="pl-64 py-3">
+                Intent
+              </th>
+              <th scope="col" class="px-44 py-3">
+                Status
+              </th>
+              <th scope="col" class="px-16 py-3">
+                Edit
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {questions.map((item, index) => (
+              <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
+                <td class="pl-64 py-4 text-sm">
+                  {item.intent1}
+                  <br />
+                  {item.intent2}
+                  <br />
+                  {item.intent3}
+                </td>
+                <td class="px-44 py-4 absolute rounded-md font-semibold text-sm">
+                  {item.status}
+                </td>
+                <td class="px-16 py-4">
+                  <item.edit1 className="text-[#2E65F3] h-6" />
+                  <item.edit2 className="text-[#F32D2D] h-6" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      {/* PASSING QUESTION OBJECT TO THE DIALOG FOR FULL VIEW (READ MORE) */}
-      <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} />
+      {/* <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} /> */}
     </div>
   );
 };
-
 export default Questions;

@@ -75,7 +75,7 @@ const Privacy = () => {
       </p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
       <div
-        className="flex justify-end w-full py-2"
+        className="flex w-full py-2"
         onClick={() => setOpen(true)}
       >
         <button className="bg-[#936CAB] rounded-md border text-white px-10 py-1">

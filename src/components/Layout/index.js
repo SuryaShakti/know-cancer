@@ -9,7 +9,8 @@ import {
   ChatIcon,
   PlayIcon,
   XIcon,
-  MenuAlt2Icon
+  MenuAlt2Icon,
+  SearchIcon,
 } from "@heroicons/react/outline";
 
 import SideBar from "./SideBar";
@@ -28,12 +29,7 @@ const navigation = [
     icon: PlayIcon,
     current: false,
   },
-  {
-    name: "Profile",
-    href: "/profile",
-    icon: UserIcon,
-    current: false,
-  },
+  
   {
     name: "Support",
     href: "/support",
@@ -179,39 +175,36 @@ export default function Layout({ children }) {
             <span className="sr-only">Open sidebar</span>
             <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex-1 flex justify-between">
+          <div className="flex-1 flex justify-between h-16">
             <div className="flex-1 flex items-center">
-              {/* <div className="flex  flex-shrink-0 items-center">
+              <div className="flex flex-shrink-0 items-center">
                 <img
                   className="h-10 w-auto"
-                  src="/images/logo.png"
+                  src="/images/loginround.png"
                   alt="Company logo is here "
                 />
-              </div> */}
-              {/* <div className="hidden md:flex items-center md:ml-32">
-                <label htmlFor="search-field" className="sr-only">
-                  Search
-                </label>
-                <div className="relative pl-2  border rounded-full border-gray-400 text-gray-400 focus-within:text-gray-600">
-                  <div className="absolute inset-y-0 left-1 flex items-center pointer-events-none">
-                    <SearchIcon
-                      className="h-5 w-5 text-orange-400 font-light"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <input
-                    id="search-field"
-                    className="block w-80 pr-2 h-full rounded-full pl-8  py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
-                    placeholder="Search patient, health issue..."
-                    type="search"
-                    name="search"
+                <div className="font-bold text-xl ml-3">kNOwcancer</div>
+              </div>
+
+              <div className="hidden md:flex border rounded-full px-8 ml-36 w-2/4">
+                <div className="inset-y-0 left-1 flex items-center pointer-events-none">
+                  <SearchIcon
+                    className="h-5 w-5 text-black font-light"
+                    aria-hidden="true"
                   />
                 </div>
-              </div> */}
+                <input
+                  id="search-field"
+                  className="w-80 pr-2 h-full rounded-full pl-7 py-2 bg-gray border-black text-gray-900 placeholder-[#999999] focus:outline-none focus:placeholder-gray-300 focus:ring-0 focus:border-transparent"
+                  placeholder="Search patient, code, messages...."
+                  type="search"
+                  name="search"
+                />
+              </div>
             </div>
             <div className="ml-4 hidden md:flex items-center md:ml-6 space-x-4">
               {/* Profile dropdown */}
-              <Menu as="div" className="ml-3 relative">
+              {/* <Menu as="div" className="ml-3 relative">
                 <div>
                   <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <div className="flex space-x-2 items-center">
@@ -250,7 +243,7 @@ export default function Layout({ children }) {
                     ))}
                   </Menu.Items>
                 </Transition>
-              </Menu>
+              </Menu> */}
             </div>
           </div>
         </div>

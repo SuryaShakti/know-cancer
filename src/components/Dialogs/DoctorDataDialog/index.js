@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import DoctorData from "@/components/Tables/DoctorData";
 
-export default function DoctorDataDialog({ open, setOpen }) {
+export default function DoctorDataDialog({ open, setOpen, data }) {
   const [otp, setOtp] = useState("");
 
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function DoctorDataDialog({ open, setOpen }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-auto text-center transform bg-white p-3 align-middle shadow-xl transition-all">
-                <DoctorData />
+                <DoctorData data={data} />
               </Dialog.Panel>
             </Transition.Child>
           </div>
