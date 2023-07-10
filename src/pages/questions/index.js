@@ -5,6 +5,7 @@ import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
 import { getAllQna } from "@/apis/qna";
 import { toast } from "react-toastify";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { Tab } from "@headlessui/react";
 
 const questions = [
   {
@@ -109,7 +110,7 @@ const Questions = () => {
         </div>
         <div className=" sm:flex items-center md:ml-32">
           <div
-            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 "
+            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md"
             onClick={() => setOpen(true)}
           >
             <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
@@ -126,47 +127,141 @@ const Questions = () => {
         />
       </div>
 
-      <div class="rounded-lg w-full mt-4 mx-4 ">
-        <table class="text-left">
-          <thead class="text-base text-black Table">
-            <tr>
-              <th scope="col" class="px-4 border ">
-                Question & Answer
-              </th>
-              <th scope="col" class="pl-64 py-3">
-                Intent
-              </th>
-              <th scope="col" class="px-44 py-3">
-                Status
-              </th>
-              <th scope="col" class="px-16 py-3">
-                Edit
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {questions.map((item, index) => (
-              <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
-                <td class="pl-64 py-4 text-sm">
-                  {item.intent1}
-                  <br />
-                  {item.intent2}
-                  <br />
-                  {item.intent3}
-                </td>
-                <td class="px-44 py-4 absolute rounded-md font-semibold text-sm">
-                  {item.status}
-                </td>
-                <td class="px-16 py-4">
-                  <item.edit1 className="text-[#2E65F3] h-6" />
-                  <item.edit2 className="text-[#F32D2D] h-6" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Tab.Group>
+        <Tab.List>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                Approved Questions
+              </div>
+            )}
+          </Tab>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                New Questions
+              </div>
+            )}
+          </Tab>
+        </Tab.List>
+        <Tab.Panels>
+          <Tab.Panel>
+            {" "}
+            <div class="rounded-lg w-full mt-4 mx-4 ">
+              <table class="text-left">
+                <thead class="text-base text-black Table border">
+                  <tr>
+                    <th scope="col" class="px-4 ">
+                      Question & Answer
+                    </th>
+                    <th scope="col" class="pl-64 py-3 ">
+                      Intent
+                    </th>
+                    <th scope="col" class="pl-52 py-3 ">
+                      Status
+                    </th>
+                    <th scope="col" class="pl-48 py-3 pr-16">
+                      Edit
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {questions.map((item, index) => (
+                    <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                      <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
+                      <td class="pl-64 py-4 text-sm">
+                        {item.intent1}
+                        <br />
+                        {item.intent2}
+                        <br />
+                        {item.intent3}
+                      </td>
+                      <td class="pl-52 py-8 absolute rounded-md font-semibold text-sm">
+                        {item.status}
+                      </td>
+                      <td class="flex absolute justify-between items-center pl-80 py-7 ">
+                        <item.edit1 className="justify-start w-auto text-[#2E65F3] h-6 px-16" />
+                        <item.edit2 className="justify-start w-auto text-[#F32D2D] h-6" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Tab.Panel>
+          <Tab.Panel>
+            {" "}
+            <div class="rounded-lg w-full mt-4 mx-4 ">
+              <table class="text-left">
+                <thead class="text-base text-black Table border">
+                  <tr>
+                    <th scope="col" class="px-4 ">
+                      Question & Answer
+                    </th>
+                    <th scope="col" class="pl-64 py-3 ">
+                      Intent
+                    </th>
+                    <th scope="col" class="pl-52 py-3 ">
+                      Status
+                    </th>
+                    <th scope="col" class="pl-48 py-3 pr-16">
+                      Edit
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {questions.map((item, index) => (
+                    <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                      <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
+                      <td class="pl-64 py-4 text-sm">
+                        {item.intent1}
+                        <br />
+                        {item.intent2}
+                        <br />
+                        {item.intent3}
+                      </td>
+                      <td class="flex justify-between pl-36 py-8 absolute rounded-md font-semibold text-sm">
+                        <div className=" sm:flex items-center ">
+                          <div
+                            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md "
+                            onClick={() => setOpen(true)}
+                          >
+                            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
+                              Approve
+                            </button>{" "}
+                          </div>
+                        </div>
+                        <div className=" sm:flex items-center ">
+                          <div
+                            className=" font-normal text-sm w-full border border-[#936CAB] mr-2 rounded-md"
+                            onClick={() => setOpen(true)}
+                          >
+                            <button className="whitespace-nowrap px-4 py-1 text-sm text-[#936CAB] font-semibold">
+                              Reject
+                            </button>{" "}
+                          </div>
+                        </div>
+                      </td>
+                      <td class="flex absolute justify-between items-center pl-80 py-7 ">
+                        <item.edit1 className="justify-start w-auto text-[#2E65F3] h-6 px-16" />
+                        <item.edit2 className="justify-start w-auto text-[#F32D2D] h-6" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
 
       {/* <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} /> */}
     </div>

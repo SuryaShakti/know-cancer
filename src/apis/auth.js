@@ -9,7 +9,7 @@ export const loginHandler = async (email, password) => {
       email,
       password,
       deviceType: 1,
-      deviceId: '11 '
+      deviceId: "11 ",
     });
     return response.data;
   } catch (error) {

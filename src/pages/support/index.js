@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 // import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
-// import SupportDialog from "@/components/Dialogs/SupportDialog";
+import SupportDialog from "@/components/Dialogs/SupportDialog";
 // import { getAllSupport } from "@/apis/support";
 
 import { PaperClipIcon } from "@heroicons/react/outline";
+import { Tab } from "@headlessui/react";
  
 
 const problems = [
@@ -47,7 +48,7 @@ const problems = [
 ];
 
 const Support = () => {
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   // const [open1, setOpen1] = useState(false);
 
   // const [current, setCurrent] = useState();
@@ -80,8 +81,100 @@ const Support = () => {
           Support
         </div>
       </div>
+      <Tab.Group>
+        <Tab.List>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                Doctors
+              </div>
+            )}
+          </Tab>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                Pateints
+              </div>
+            )}
+          </Tab>
+        </Tab.List>
+        <Tab.Panels>
+          <Tab.Panel>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {problems.map((item, index) => (
+                <div className=" py-4 px-5 rounded-lg border">
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto justify-start text-sm text-[#9B75B2] ">
+                      Ticket ID: {item.id}
+                    </div>
+                    <div className="w-auto justify-start text-sm text-[#9B75B2]">
+                      User: {item.user}
+                    </div>
+                  </div>
+
+                  <p className="text-sm pt-4">{item.details}</p>
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto flex justify-between text-sm text-[#9B75B2] py-2 font-bold">
+                      <PaperClipIcon className="h-4 " />
+                      View Screenshot
+                    </div>
+                    <div
+                      className="flex py-2 justify-end"
+                      onClick={() => setOpen(true)}
+                    >
+                      <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
+                        Resolve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tab.Panel>
+          <Tab.Panel>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {problems.map((item, index) => (
+                <div className=" py-4 px-5 rounded-lg border">
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto justify-start text-sm text-[#9B75B2] ">
+                      Ticket ID: {item.id}
+                    </div>
+                    <div className="w-auto justify-start text-sm text-[#9B75B2]">
+                      User: {item.user}
+                    </div>
+                  </div>
+
+                  <p className="text-sm pt-4">{item.details}</p>
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto flex justify-between text-sm text-[#9B75B2] py-2 font-bold">
+                      <PaperClipIcon className="h-4 " />
+                      View Screenshot
+                    </div>
+                    <div
+                      className="flex py-2 justify-end"
+                      onClick={() => setOpen(true)}
+                    >
+                      <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
+                        Resolve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
       {/* ----------------------------------------------------------------------------------------------------- */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         {problems.map((item, index) => (
           <div className=" py-4 px-5 rounded-lg border">
             <div className="flex justify-between items-center">
@@ -99,15 +192,18 @@ const Support = () => {
                 <PaperClipIcon className="h-4 " />
                 View Screenshot
               </div>
-              <div className="flex py-2 justify-end" onClick={() => setOpen(true)}>
+              <div
+                className="flex py-2 justify-end"
+                onClick={() => setOpen(true)}
+              >
                 <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
                   Resolve
                 </button>
               </div>
             </div>
           </div>
-        ))}
-        {/* {data &&
+        ))}</div> */}
+      {/* {data &&
           data?.map((item, index) => (
             <div className=" py-4 px-7 rounded-lg border">
               <div className="flex space-x-2">
@@ -155,8 +251,7 @@ const Support = () => {
               </div>
             </div>
           ))} */}
-      </div>
-      {/* <SupportDialog open={open1} setOpen={setOpen1} current={current} /> */}
+      <SupportDialog open={open} setOpen={setOpen} />
     </div>
   );
 };

@@ -1,84 +1,89 @@
 import { useState } from "react";
 import React from "react";
 import PrimaryButton from "../../Buttons/PrimaryButton";
-import { BeatLoader } from "react-spinners";
-import { addNewQa } from "@/apis/qna";
-import { toast } from "react-toastify";
 
-const QAForm = ({ data, setData, setOpen }) => {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [intent, setIntent] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const createQa = async () => {
-    try {
-      setLoading(true);
-      const response = await addNewQa(question, answer, intent);
-      const _data = [...data];
-      setData([..._data, response]);
-      setLoading(false);
-      setOpen(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-      toast.error(error ? error : "Something went wrong", "bottom-right");
-    }
-  };
+const QAForm = () => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full max-w-lg p-5">
+    <div className="w-full max-w-lg px-7">
       {" "}
-      <div className="font-bold text-gray-800 text-left text-xl py-5">
-        ADD Q&A
+      <div className="font-bold text-gray-800 text-left text-xl py-3">
+        ADD Information
       </div>
-      <div className="py-8">
+      <div className="shadow py-4 px-5 rounded-lg shadow-[0px_2px_4px_0px_#936CAB]">
         <div className="text-black text-left font-bold">Question:</div>
-        <div className="my-2">
+        <div>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="text"
-              name="Question"
-              id="Question"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              className="block w-full rounded-md py-1.5 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              name="price"
+              id="price"
+              placeholder="What is Cancer?"
+              className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
+        <div className="text-black text-left font-bold">
+          Choose Your Preference
+        </div>
+        <div className="text-left ">
+          <input type="radio" id="text" name="text" value="Text" />
+          <label for="Text" className="px-2 font-semibold">
+            Text
+          </label>
+          <br />
+          <input type="radio" id="video" name="video" value="Video" />
+          <label for="css" className="px-2 font-semibold">
+            Video
+          </label>
+          <br />
+          <input type="radio" id="both" name="both" value="both" />
+          <label for="both" className="px-2 font-semibold">
+            Both
+          </label>
+        </div>
+
         <div className="text-black text-left font-bold">Answer:</div>
-        <div className="my-2">
+        <div>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="text"
-              name="answer"
-              id="answer"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="block w-full rounded-md py-1.5 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              name="price"
+              id="price"
+              placeholder="Cancer is a complex and diverse group of diseases Cancer is a complex and diverse group of diseases "
+              className="block w-full h-16 rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+        <div className="text-black font-bold text-left">Link</div>
+        <div>
+          <div className="relative mt-2 rounded-md shadow-sm">
+            <input
+              type="text"
+              name="price"
+              id="price"
+              placeholder="willie.jennings@example.com"
+              className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
         <div className="text-black font-bold text-left">Intent</div>
-        <div className="my-2">
+        <div>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               type="text"
-              name="intent"
-              id="intent"
-              value={intent}
-              onChange={(e) => setIntent(e.target.value)}
-              className="block w-full rounded-md py-1.5 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              name="price"
+              id="price"
+              placeholder="Heal Cancer"
+              className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
       </div>
-      <button
-        onClick={() => createQa()}
-        className="rounded-md mt-5 text-white w-full py-2 bg-[#936CAB] hover:bg-[#936CAB]-800"
-      >
-        {loading ? <BeatLoader className="text-white" /> : "Save"}
-      </button>
+      <div onClick={() => setOpen(true)} className="py-4 w-3/4 ml-8">
+        <PrimaryButton text={"Upload"} color={"bg-[#936CAB]"} />
+      </div>
     </div>
   );
 };

@@ -39,7 +39,7 @@ export default function AddQADialog({ open, setOpen, setData, data }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-sm text-center transform overflow-hidden rounded-2xl bg-white p-2 align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-lg text-center transform overflow-hidden rounded-2xl bg-white p-2 align-middle shadow-xl transition-all">
                 <QAForm data={data} setData={setData} setOpen={setOpen} />
                 {/* <div className="mt-2">
                   <div className="w-full max-w-xs">

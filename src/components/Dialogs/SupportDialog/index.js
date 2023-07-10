@@ -52,8 +52,66 @@ export default function SupportDialog({ open, setOpen, current }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-lg h-60 p-6 text-center transform rounded-2xl shadow-[4px_4px_4px_2px_#936CAB] bg-white p-6 align-middle shadow transition-all">
+              <Dialog.Panel className="w-full max-w-md h-fit transform rounded-md bg-white shadow transition-all">
                 <div className="flex space-x-2">
+                  <div className="Background w-full h-16 flex ">
+                    <div className="p-4 font-bold text-lg">Support</div>{" "}
+                    <div className=" sm:flex items-center">
+                      <div className=" font-normal text-sm w-full bg-[#FCE7F3] mr-2 rounded-xl">
+                        <button className="whitespace-nowrap px-3 py-1 text-sm text-[#9D174D] font-semibold">
+                          Ticket Id: 1002635
+                        </button>
+                      </div>{" "}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <div className="w-auto justify-start text-sm text-[#7E7E7E] px-4">
+                    Customer name
+                    <div className="text-black">Margot Foster</div>
+                  </div>
+                  <div className="w-auto justify-start text-sm text-[#7E7E7E] px-4">
+                    Date
+                    <div className="text-black">31st may 2023</div>
+                  </div>
+                </div>{" "}
+                <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
+                  Ticket for product/service
+                </div>
+                <div className="flex text-black text-sm px-4">Consultation</div>
+                <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
+                  Email
+                </div>
+                <div className="flex text-black text-sm px-4">
+                  margotfoster@example.com
+                </div>
+                <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
+                  Description
+                </div>
+                <div className="text-left text-black text-sm px-4 ">
+                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
+                  incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
+                  consequat sint. Sit id mollit nulla mollit nostrud in ea
+                  officia proident. Irure nostrud pariatur mollit ad adipisicing
+                  reprehenderit deserunt qui eu.{" "}
+                </div>
+                <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
+                  Images
+                </div>
+                <div className="flex text-black text-sm px-2">
+                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />{" "}
+                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />{" "}
+                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />
+                </div>
+                <div
+                  className="justify-center font-normal text-sm w-fit bg-[#936CAB] rounded-md my-4 mt-16 ml-36"
+                  onClick={() => setOpen(true)}
+                >
+                  <button className="whitespace-nowrap px-16 py-1 text-sm text-white font-semibold">
+                    Call
+                  </button>
+                </div>{" "}
+                {/* <div className="flex space-x-2">
                   <img
                     src={
                       current?.user?.avatar
@@ -103,7 +161,7 @@ export default function SupportDialog({ open, setOpen, current }) {
                   <button className="bg-[#936CAB] rounded-md border text-white px-7 py-1">
                     Resolve
                   </button>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>

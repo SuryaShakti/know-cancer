@@ -60,7 +60,7 @@ const Video = () => {
         </div>
         <div className=" sm:flex items-center md:ml-32">
           <div
-            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 "
+            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md"
             onClick={() => setOpen(true)}
           >
             <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
