@@ -57,52 +57,35 @@ const PatientData = () => {
     <div>
       <div class="relative rounded-lg ">
         <table class="text-left">
-          <thead class="text-base text-black Table">
+          <thead class="text-base text-[#667085] Table">
             <tr>
-              <th scope="col" class="px-6 py-3">
-                #
-              </th>
-              <th scope="col" class="px-8 py-3">
+              <th scope="col" class="px-16 py-3">
                 Patient Name
               </th>
-              <th scope="col" class="px-8 py-3">
-                Gender
-              </th>
-              <th scope="col" class="px-8 py-3">
-                Diseases
-              </th>
-              <th scope="col" class="px-8 py-3">
+              <th scope="col" class="px-12 py-3">
                 Report
               </th>
-              <th scope="col" class="px-8 py-3">
-                Dr.Code
+              <th scope="col" class="px-16 py-3">
+                Contact Details
               </th>
-              <th scope="col" class="px-10 py-3">
-                Details
+              <th scope="col" class="px-16 py-3">
+                Consulting Doctor
               </th>
             </tr>
           </thead>
           <tbody>
             {patientdata.map((item, index) => (
               <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                <td class="px-6 py-4">
-                  {" "}
-                  <img src={"/images/image3.png"} className="w-12 rounded-md" />
+              
+                <td class="px-12 py-4 font-medium text-base">Bhumika Agarwal</td>
+                <td class="px-12 py-4 text-[#6A6A6A] font-normal">
+                Report
                 </td>
-                <td class="px-6 py-4 font-medium text-base">{item.name}</td>
-                <td class="px-6 py-4 text-[#6A6A6A] font-normal">
-                  {item.gender}
+                <td class="px-20">
+                 9864538566
                 </td>
-                <td class="my-6 p-1 border border-[#FF6E6E] text-[#FF6E6E] absolute rounded-md font-medium text-sm">
-                  {item.disease}
-                </td>
-                <td class="px-6 py-4 text-[#1DCE4F]">Viewed</td>
-                <td class="px-6 py-4 text-[#6A6A6A] font-normal">
-                  {item.drcode}{" "}
-                </td>
-                <td class="my-6 p-1 border border-[#575AE5] text-[#575AE5] absolute rounded-md font-medium text-sm">
-                  {item.details}
-                </td>{" "}
+                <td class="px-24 py-4 ">Dr. Venkatesh</td>
+               
               </tr>
             ))}
           </tbody>

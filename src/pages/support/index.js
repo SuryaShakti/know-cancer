@@ -1,159 +1,211 @@
 import React, { useEffect, useState } from "react";
-import { SearchIcon } from "@heroicons/react/outline";
-import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
+
+// import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import SupportDialog from "@/components/Dialogs/SupportDialog";
-import { getAllSupport } from "@/apis/support";
+// import { getAllSupport } from "@/apis/support";
+
+import { PaperClipIcon } from "@heroicons/react/outline";
+import { Tab } from "@headlessui/react";
+ 
 
 const problems = [
   {
-    id: 1,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
   {
-    id: 2,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
   {
-    id: 3,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
   {
-    id: 4,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
   {
-    id: 5,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
   {
-    id: 6,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
-  },
-  {
-    id: 7,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
-  },
-  {
-    id: 8,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
-  },
-  {
-    id: 9,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
-  },
-  {
-    id: 10,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
-  },
-  {
-    id: 11,
-    name: "Ethel Howard",
-    problem: "This is the Problem",
-    ticketno: 293810,
+    id: "15875",
+    user: "Surya Shakti",
+    details:
+      "Lorem ipsum dolor sit amet consec. Feugiat magna aliquam quis cursus massa accumsan ultrices. Donec nulla faucibus pellentesque tristique.",
   },
 ];
 
 const Support = () => {
   const [open, setOpen] = useState(false);
-  const [open1, setOpen1] = useState(false);
+  // const [open1, setOpen1] = useState(false);
 
-  const [current, setCurrent] = useState();
+  // const [current, setCurrent] = useState();
 
-  const [loading, setLoading] = useState("false");
-  const [data, setData] = useState([]);
+  // const [loading, setLoading] = useState("false");
+  // const [data, setData] = useState([]);
 
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const data = await getAllSupport();
-      console.log(data);
-      setData(data.data);
-      setLoading(false);
-    } catch (error) {
-      toast.error(error ? error : "Something went wrong", "bottom-right");
-      setLoading(false);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = await getAllSupport();
+  //     console.log(data);
+  //     setData(data.data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     toast.error(error ? error : "Something went wrong", "bottom-right");
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <div>
       {" "}
       <div className="flex justify-between items-center">
-        <div className="justify-start font-semibold text-2xl text-[#374151] ">
+        <div className="w-auto justify-start font-bold text-xl text-[#374151] ">
           Support
         </div>
-        <div className="hidden md:flex items-center">
-          <div className="flex border rounded-full px-5 mx-8 w-full">
-            <div className="inset-y-0 left-1 flex items-center pointer-events-none">
-              <SearchIcon
-                className="h-5 w-5 text-black font-light"
-                aria-hidden="true"
-              />
-            </div>
-            <input
-              id="search-field"
-              className="w-80 pr-2 h-full rounded-full pl-5 py-2 bg-gray border-black text-gray-900 placeholder-[#999999] focus:outline-none focus:placeholder-gray-300 focus:ring-0 focus:border-transparent"
-              placeholder="Search patient, code, messages...."
-              type="search"
-              name="search"
-            />
-          </div>
-          <div
-            className="flex font-normal text-sm w-full bg-[#936CAB] mr-2"
-            onClick={() => setOpen(true)}
-          >
-            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
-              + Add New Q&A
-            </button>
-          </div>{" "}
-          <div className="flex justify-end w-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#936CAB"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
-              />
-            </svg>
-          </div>
-        </div>
-        <AddQADialog open={open} setOpen={setOpen} />
       </div>
+      <Tab.Group>
+        <Tab.List>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                Doctors
+              </div>
+            )}
+          </Tab>
+          <Tab className=" my-4 px-12 py-1 border rounded-md ">
+            {({ selected }) => (
+              <div
+                className={
+                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                }
+              >
+                Pateints
+              </div>
+            )}
+          </Tab>
+        </Tab.List>
+        <Tab.Panels>
+          <Tab.Panel>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {problems.map((item, index) => (
+                <div className=" py-4 px-5 rounded-lg border">
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto justify-start text-sm text-[#9B75B2] ">
+                      Ticket ID: {item.id}
+                    </div>
+                    <div className="w-auto justify-start text-sm text-[#9B75B2]">
+                      User: {item.user}
+                    </div>
+                  </div>
+
+                  <p className="text-sm pt-4">{item.details}</p>
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto flex justify-between text-sm text-[#9B75B2] py-2 font-bold">
+                      <PaperClipIcon className="h-4 " />
+                      View Screenshot
+                    </div>
+                    <div
+                      className="flex py-2 justify-end"
+                      onClick={() => setOpen(true)}
+                    >
+                      <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
+                        Resolve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tab.Panel>
+          <Tab.Panel>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              {problems.map((item, index) => (
+                <div className=" py-4 px-5 rounded-lg border">
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto justify-start text-sm text-[#9B75B2] ">
+                      Ticket ID: {item.id}
+                    </div>
+                    <div className="w-auto justify-start text-sm text-[#9B75B2]">
+                      User: {item.user}
+                    </div>
+                  </div>
+
+                  <p className="text-sm pt-4">{item.details}</p>
+                  <div className="flex justify-between items-center">
+                    <div className="w-auto flex justify-between text-sm text-[#9B75B2] py-2 font-bold">
+                      <PaperClipIcon className="h-4 " />
+                      View Screenshot
+                    </div>
+                    <div
+                      className="flex py-2 justify-end"
+                      onClick={() => setOpen(true)}
+                    >
+                      <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
+                        Resolve
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
       {/* ----------------------------------------------------------------------------------------------------- */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
-        {data &&
+      {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        {problems.map((item, index) => (
+          <div className=" py-4 px-5 rounded-lg border">
+            <div className="flex justify-between items-center">
+              <div className="w-auto justify-start text-sm text-[#9B75B2] ">
+                Ticket ID: {item.id}
+              </div>
+              <div className="w-auto justify-start text-sm text-[#9B75B2]">
+                User: {item.user}
+              </div>
+            </div>
+
+            <p className="text-sm pt-4">{item.details}</p>
+            <div className="flex justify-between items-center">
+              <div className="w-auto flex justify-between text-sm text-[#9B75B2] py-2 font-bold">
+                <PaperClipIcon className="h-4 " />
+                View Screenshot
+              </div>
+              <div
+                className="flex py-2 justify-end"
+                onClick={() => setOpen(true)}
+              >
+                <button className="bg-[#936CAB] rounded-md border text-white text-sm px-5 py-1">
+                  Resolve
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}</div> */}
+      {/* {data &&
           data?.map((item, index) => (
-            <div className=" py-4 px-7 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]">
+            <div className=" py-4 px-7 rounded-lg border">
               <div className="flex space-x-2">
                 <img
                   src={
@@ -198,9 +250,8 @@ const Support = () => {
                 </button>
               </div>
             </div>
-          ))}
-      </div>
-      <SupportDialog open={open1} setOpen={setOpen1} current={current} />
+          ))} */}
+      <SupportDialog open={open} setOpen={setOpen} />
     </div>
   );
 };

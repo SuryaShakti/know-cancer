@@ -8,15 +8,17 @@ import {
   UserIcon,
   ChatIcon,
   PlayIcon,
+  InformationCircleIcon,
+  StarIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
   {
-    name: "Q&A",
+    name: "Information",
     href: "/questions",
-    icon: ChatIcon,
+    icon: InformationCircleIcon,
     current: false,
   },
   {
@@ -26,21 +28,15 @@ const navigation = [
     current: false,
   },
   {
-    name: "Profile",
-    href: "/profile",
-    icon: UserIcon,
-    current: false,
-  },
-  {
     name: "Support",
     href: "/support",
-    icon: InboxIcon,
+    icon: ChatIcon,
     current: false,
   },
   {
     name: "Review",
     href: "/review",
-    icon: InboxIcon,
+    icon: StarIcon,
     current: false,
   },
   {
@@ -67,7 +63,7 @@ const SideBar = () => {
     <div className="hidden md:flex md:w-52 md:flex-col md:fixed md:inset-y-0">
       {/* Sidebar component, swap this element with another sidebar if you like */}
 
-      <div className="flex flex-col flex-grow border-r border-gray-200 pt-10 bg-white overflow-y-auto">
+      <div className="flex flex-col flex-grow border-r border-gray-200 pt-16 bg-white overflow-y-auto">
         {/* <div className="flex  flex-shrink-0 px-4">
               <img
                 className="h-10 w-auto"

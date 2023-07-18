@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://13.200.83.188/v1";
+const API_URL = "https://api.knowcancer.braynixai.com/v1";
 
 export const getAllVideos = async () => {
   try {
