@@ -4,15 +4,18 @@ import Image from "next/image";
 import OtpForm from "@/components/Forms/OtpForm";
 function Home() {
   return (
-    <div className="h-screen w-full grid md:grid-cols-2">
-      <div className="w-full bg-white flex flex-col justify-center items-center">
+    <div className="h-screen bg-[#F5EBFC] w-full grid md:grid-cols-2">
+      <div className="w-full  flex flex-col justify-center items-center p-10">
         {/* PUT LOGIN SCREEN IMAGE HERE */}
-        image should be here
+        <div className="text-4xl text-[#936CAD] font-bold mb-4">
+          Empowering Healthcare Management
+        </div>
+        <img src={"/images/loginImage.png"} />
       </div>
-      <div className="mainbg bg-gray-200 flex justify-center items-center flex-col">
+      <div className="mainbg flex justify-center items-center flex-col">
         {/* LOGIN FORM SHOULD BE HERE */}
         <LoginForm />
-    
+
         {/* <OtpForm/> */}
       </div>
     </div>

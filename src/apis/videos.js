@@ -8,7 +8,7 @@ export const getAllVideos = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/video-management`,
+      url: `${API_URL}/video-management?$limit=-1`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

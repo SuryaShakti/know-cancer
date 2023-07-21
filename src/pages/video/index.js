@@ -40,7 +40,7 @@ const Video = () => {
       setLoading(true);
       const data = await getAllVideos();
       console.log(data);
-      setData(data.data);
+      setData(data);
       setLoading(false);
     } catch (error) {
       toast.error(error ? error : "Something went wrong", "bottom-right");
@@ -56,7 +56,7 @@ const Video = () => {
     <div>
       <div className="flex justify-between items-center">
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
-          Video
+          Videos
         </div>
         <div className=" sm:flex items-center md:ml-32">
           <div
@@ -84,14 +84,15 @@ const Video = () => {
         </div>
       ) : (
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 mt-10 rounded ">
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <div
               key={index}
               className="py-3 px-3 rounded-lg shadow-[4px_4px_4px_2px_#936CAB]"
             >
               <YouTubeVideo videoUrl={item.link} />
+              <p className="font-semibold text-sm px-2">{item?.tagLine}</p>
               <p className="font-semibold text-sm px-2 py-2">
-                Intents: Lorem, Ipsum, XYZ
+                Intents: {item?.intent}
               </p>
             </div>
           ))}

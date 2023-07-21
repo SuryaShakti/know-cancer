@@ -59,7 +59,7 @@ export default function SupportDialog({ open, setOpen, current }) {
                     <div className=" sm:flex items-center">
                       <div className=" font-normal text-sm w-full bg-[#FCE7F3] mr-2 rounded-xl">
                         <button className="whitespace-nowrap px-3 py-1 text-sm text-[#9D174D] font-semibold">
-                          Ticket Id: 1002635
+                          Ticket Id: {current?.ticketNumber}
                         </button>
                       </div>{" "}
                     </div>
@@ -68,46 +68,49 @@ export default function SupportDialog({ open, setOpen, current }) {
                 <div className="flex justify-between items-center pt-2">
                   <div className="w-auto justify-start text-sm text-[#7E7E7E] px-4">
                     Customer name
-                    <div className="text-black">Margot Foster</div>
+                    <div className="text-black">{current?.user?.name}</div>
                   </div>
                   <div className="w-auto justify-start text-sm text-[#7E7E7E] px-4">
                     Date
-                    <div className="text-black">31st may 2023</div>
+                    <div className="text-black">
+                      {current?.updatedAt.slice(0, 10)}
+                    </div>
                   </div>
-                </div>{" "}
+                </div>
                 <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
                   Ticket for product/service
                 </div>
-                <div className="flex text-black text-sm px-4">Consultation</div>
+                <div className="flex text-black text-sm px-4">
+                  {current?.product ? current?.product : "Consultation"}
+                </div>
                 <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
                   Email
                 </div>
                 <div className="flex text-black text-sm px-4">
-                  margotfoster@example.com
+                  {current?.user?.email ? current?.user?.email : "N/A"}
                 </div>
                 <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
                   Description
                 </div>
                 <div className="text-left text-black text-sm px-4 ">
-                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                  incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-                  consequat sint. Sit id mollit nulla mollit nostrud in ea
-                  officia proident. Irure nostrud pariatur mollit ad adipisicing
-                  reprehenderit deserunt qui eu.{" "}
+                  {current?.description}
                 </div>
                 <div className=" flex w-auto justify-start text-sm text-[#7E7E7E] px-4 pt-4">
                   Images
                 </div>
                 <div className="flex text-black text-sm px-2">
-                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />{" "}
-                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />{" "}
-                  <img src={"/images/support.png"} className="h-14 pt-2 px-2" />
+                  <img src={current?.attachments} className="w-20" />
                 </div>
                 <div
                   className="justify-center font-normal text-sm w-fit bg-[#936CAB] rounded-md my-4 mt-16 ml-36"
                   onClick={() => setOpen(true)}
                 >
-                  <button className="whitespace-nowrap px-16 py-1 text-sm text-white font-semibold">
+                  <button
+                    onClick={() =>
+                      (window.location.href = `tel:${current?.user?.phone}`)
+                    }
+                    className="whitespace-nowrap px-16 py-1 text-sm text-white font-semibold"
+                  >
                     Call
                   </button>
                 </div>{" "}

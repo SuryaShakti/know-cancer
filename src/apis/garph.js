@@ -2,50 +2,40 @@ import axios from "axios";
 
 const API_URL = "https://api.knowcancer.braynixai.com";
 
-export const getAllSupport = async () => {
+export const getDoctorGraphData = async () => {
   try {
     const token = localStorage.getItem("token");
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/v1/support-ticket-management?$limit=-1&$populate=user`,
+      url: `${API_URL}/v1/doctor-report`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    
     };
 
     const response = await axios.request(config);
-
     return response.data;
   } catch (error) {
-    return error.response.data.message;
+    throw error.response.data.message;
   }
 };
 
-export const resolveSupport = async (id) => {
+export const getPatientGraphData = async () => {
   try {
     const token = localStorage.getItem("token");
-
-    let data = JSON.stringify({
-      status: 2,
-    });
-
     let config = {
-      method: "patch",
+      method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/v1/support-ticket-management/${id}`,
+      url: `${API_URL}/v1/patient-report`,
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      data: data,
     };
 
     const response = await axios.request(config);
-
     return response.data;
   } catch (error) {
-    return error.response.data.message;
+    throw error.response.data.message;
   }
 };

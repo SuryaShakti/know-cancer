@@ -1,5 +1,5 @@
-import React from 'react';
-import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import React from "react";
+import PrimaryButton from "@/components/Buttons/PrimaryButton";
 
 const Privacy = () => {
   return (
@@ -7,14 +7,14 @@ const Privacy = () => {
       <div className="flex flex-1 justify-between items-center">
         <h1 className="text-2xl font-bold">Privacy Policy</h1>
         <div className=" sm:flex items-center md:ml-32">
-          <div
+          {/* <div
             className=" font-normal text-sm bg-[#936CAB] mr-2 rounded-md"
             onClick={() => setOpen(true)}
           >
             <button className="whitespace-nowrap px-8 py-1 text-sm text-white font-semibold">
               Edit
             </button>
-          </div>{" "}
+          </div>{" "} */}
         </div>
       </div>
       <p className="pt-5">
@@ -93,6 +93,6 @@ const Privacy = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Privacy
+export default Privacy;

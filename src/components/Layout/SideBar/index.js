@@ -72,9 +72,12 @@ const SideBar = () => {
               />
             </div> */}
         <div className="Background w-52 h-48 flex justify-center">
-          <img src={"/images/adminimg.png"} className=" absolute w-28 pt-2" />
-          <p className="absolute font-bold pt-32">John Smith</p>
-          <p className="pt-36">Admin</p>
+          {/* <img src={"/images/adminimg.png"} className=" absolute w-28 pt-2" /> */}
+          <div className="mt-3 w-28 h-28 rounded-full bg-white flex justify-center items-center text-3xl text-gray-500 font-bold">
+            A
+          </div>
+          <p className="absolute font-bold pt-32">Master Admin</p>
+          {/* <p className="pt-36">Admin</p> */}
         </div>
         <div className="mt-3 flex-grow flex flex-col">
           <nav className="flex-1 px-2 pb-4 space-y-1">

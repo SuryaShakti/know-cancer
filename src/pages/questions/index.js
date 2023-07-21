@@ -2,10 +2,17 @@ import { SearchIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
 import ReadMoreDialog from "@/components/Dialogs/ReadMoreDialog";
-import { getAllQna } from "@/apis/qna";
+import {
+  approveQa,
+  deleteQa,
+  getAllQna,
+  getAllQuestions,
+  rejectQa,
+} from "@/apis/qna";
 import { toast } from "react-toastify";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import { Tab } from "@headlessui/react";
+import ConfirmationDialog from "@/components/Dialogs/ConfirmationDialog";
 
 const questions = [
   {
@@ -84,23 +91,71 @@ const Questions = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
 
-  // const [current,setCurrent] = useState();
-  // const [questions, setQuestions] = useState([]);
+  const [on, setOn] = useState(false);
+  const [currentRow, setCurrentRow] = useState("");
+  const [questions, setQuestions] = useState([]);
 
-  // const getQuestions = async () => {
-  //   console.log("runned");
-  //   try {
-  //     const response = await getAllQna();
-  //     console.log(response);
-  //     setQuestions(response);
-  //   } catch (error) {
-  //     toast.error(error ? error : "Something went wrong");
-  //   }
-  // };
+  const [edit, setEdit] = useState(false);
+  const [editData, setEditData] = useState(null);
 
-  // useEffect(() => {
-  //   getQuestions();
-  // }, []);
+  const getQuestions = async () => {
+    console.log("runned");
+    try {
+      const response = await getAllQuestions();
+      console.log(response);
+      setQuestions(response);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
+  const approveHandler = async (id) => {
+    console.log("approve handler called");
+    try {
+      const resoponse = await approveQa(id);
+      console.log(resoponse);
+      const _questions = [...questions];
+
+      setQuestions([
+        ..._questions.filter((item, index) => item._id !== resoponse._id),
+        resoponse,
+      ]);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong");
+    }
+  };
+  const rejectHandler = async (id) => {
+    console.log("approve handler called");
+    try {
+      const resoponse = await rejectQa(id);
+      console.log(resoponse);
+      const _questions = [...questions];
+
+      setQuestions([
+        ..._questions.filter((item, index) => item._id !== resoponse._id),
+        resoponse,
+      ]);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong");
+    }
+  };
+
+  const deleteQuestion = async (id) => {
+    try {
+      const response = await deleteQa(id);
+      const _questions = [...questions];
+
+      setQuestions([
+        ..._questions.filter((item, index) => item._id !== response._id),
+      ]);
+    } catch (error) {
+      toast.error(error ? error : "Something went wrong");
+    }
+  };
 
   return (
     <div>
@@ -122,8 +177,10 @@ const Questions = () => {
         <AddQADialog
           open={open}
           setOpen={setOpen}
-          // questions={questions}
-          // setQuestions={setQuestions}
+          data={questions}
+          setData={setQuestions}
+          edit={edit}
+          editData={editData}
         />
       </div>
 
@@ -133,7 +190,9 @@ const Questions = () => {
             {({ selected }) => (
               <div
                 className={
-                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                  selected
+                    ? "border-b-2 border-[#936CAB]"
+                    : "bg-white text-black"
                 }
               >
                 Approved Questions
@@ -144,7 +203,9 @@ const Questions = () => {
             {({ selected }) => (
               <div
                 className={
-                  selected ? "border-b-2 border-[#936CAB]" : "bg-white text-black"
+                  selected
+                    ? "border-b-2 border-[#936CAB]"
+                    : "bg-white text-black"
                 }
               >
                 New Questions
@@ -154,108 +215,128 @@ const Questions = () => {
         </Tab.List>
         <Tab.Panels>
           <Tab.Panel>
-            {" "}
             <div class="rounded-lg w-full mt-4 mx-4 ">
-              <table class="text-left">
-                <thead class="text-base text-black Table border">
+              <table class="text-left  w-full">
+                <thead class="text-base text-black  border">
                   <tr>
-                    <th scope="col" class="px-4 ">
+                    <th scope="col" class="flex-1 px-4 ">
                       Question & Answer
                     </th>
-                    <th scope="col" class="pl-64 py-3 ">
+                    <th scope="col" class="py-3 ">
                       Intent
                     </th>
-                    <th scope="col" class="pl-52 py-3 ">
+                    <th scope="col" class="py-3 ">
                       Status
                     </th>
-                    <th scope="col" class="pl-48 py-3 pr-16">
-                      Edit
+                    <th scope="col" class=" py-3 ">
+                      Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {questions.map((item, index) => (
-                    <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                      <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
-                      <td class="pl-64 py-4 text-sm">
-                        {item.intent1}
-                        <br />
-                        {item.intent2}
-                        <br />
-                        {item.intent3}
-                      </td>
-                      <td class="pl-52 py-8 absolute rounded-md font-semibold text-sm">
-                        {item.status}
-                      </td>
-                      <td class="flex absolute justify-between items-center pl-80 py-7 ">
-                        <item.edit1 className="justify-start w-auto text-[#2E65F3] h-6 px-16" />
-                        <item.edit2 className="justify-start w-auto text-[#F32D2D] h-6" />
-                      </td>
-                    </tr>
-                  ))}
+                <tbody className="w-full">
+                  {questions
+                    ?.filter(
+                      (item, index) => item.status === 2 || item.status === 3
+                    )
+                    ?.map((item, index) => (
+                      <tr class="bg-white w-full border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                        <td class="px-4 py-4 font-medium text-base">
+                          {item.question}
+                        </td>
+                        <td class=" py-4 text-sm">{item.intent}</td>
+                        <td class=" py-8  rounded-md font-semibold text-sm">
+                          {item.status === 2
+                            ? "Uploaded"
+                            : item.status === 3
+                            ? "Rejected"
+                            : "N/A"}
+                        </td>
+                        <td class="flex  items-center py-7 ">
+                          <PencilAltIcon
+                            onClick={() => {
+                              setEdit(true);
+                              setEditData(item);
+                              setOpen(true);
+                            }}
+                            className=" text-[#2E65F3] h-6 mr-5"
+                          />
+                          <TrashIcon
+                            onClick={() => {
+                              setOn(true);
+                              setCurrentRow(item._id);
+                            }}
+                            className="cursor-pointer text-[#F32D2D] h-6"
+                          />
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
           </Tab.Panel>
           <Tab.Panel>
-            {" "}
             <div class="rounded-lg w-full mt-4 mx-4 ">
-              <table class="text-left">
+              <table class="text-left w-full">
                 <thead class="text-base text-black Table border">
                   <tr>
                     <th scope="col" class="px-4 ">
                       Question & Answer
                     </th>
-                    <th scope="col" class="pl-64 py-3 ">
+                    <th scope="col" class=" py-3 ">
                       Intent
                     </th>
-                    <th scope="col" class="pl-52 py-3 ">
+                    <th scope="col" class=" py-3 ">
                       Status
                     </th>
-                    <th scope="col" class="pl-48 py-3 pr-16">
+                    <th scope="col" class=" py-3">
                       Edit
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {questions.map((item, index) => (
-                    <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                      <td class="px-4 py-4 font-medium text-base">{item.qa}</td>
-                      <td class="pl-64 py-4 text-sm">
-                        {item.intent1}
-                        <br />
-                        {item.intent2}
-                        <br />
-                        {item.intent3}
-                      </td>
-                      <td class="flex justify-between pl-36 py-8 absolute rounded-md font-semibold text-sm">
-                        <div className=" sm:flex items-center ">
-                          <div
-                            className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md "
-                            onClick={() => setOpen(true)}
-                          >
-                            <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
+                  {questions
+                    ?.filter((item, index) => item.status === 1)
+                    ?.map((item, index) => (
+                      <tr class="bg-white w-full border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                        <td class="px-4 py-4 font-medium text-base">
+                          {item.question}
+                        </td>
+                        <td class=" py-4 text-sm">{item.intent}</td>
+                        <td class=" py-8  rounded-md font-semibold text-sm">
+                          <div className="flex space-x-3 items-center ">
+                            <button
+                              onClick={() => approveHandler(item._id)}
+                              className="text-xs p-2 rounded-md bg-[#9973B1] text-white"
+                            >
                               Approve
-                            </button>{" "}
-                          </div>
-                        </div>
-                        <div className=" sm:flex items-center ">
-                          <div
-                            className=" font-normal text-sm w-full border border-[#936CAB] mr-2 rounded-md"
-                            onClick={() => setOpen(true)}
-                          >
-                            <button className="whitespace-nowrap px-4 py-1 text-sm text-[#936CAB] font-semibold">
+                            </button>
+                            <button
+                              onClick={() => rejectHandler(item._id)}
+                              className="cursor-pointer text-xs text-[#9973B1] p-2 rounded-md border border-[#9973B1]"
+                            >
                               Reject
-                            </button>{" "}
+                            </button>
                           </div>
-                        </div>
-                      </td>
-                      <td class="flex absolute justify-between items-center pl-80 py-7 ">
-                        <item.edit1 className="justify-start w-auto text-[#2E65F3] h-6 px-16" />
-                        <item.edit2 className="justify-start w-auto text-[#F32D2D] h-6" />
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                        <td class="flex  items-center py-7 ">
+                          <PencilAltIcon
+                            onClick={() => {
+                              setEdit(true);
+                              setEditData(item);
+                              setOpen(true);
+                            }}
+                            className=" text-[#2E65F3] h-6 mr-5"
+                          />
+                          <TrashIcon
+                            onClick={() => {
+                              setOn(true);
+                              setCurrentRow(item._id);
+                            }}
+                            className="cursor-pointer text-[#F32D2D] h-6"
+                          />
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -264,6 +345,11 @@ const Questions = () => {
       </Tab.Group>
 
       {/* <ReadMoreDialog open={open1} setOpen={setOpen1} current={current} /> */}
+      <ConfirmationDialog
+        on={on}
+        setOn={setOn}
+        callback={() => deleteQuestion(currentRow)}
+      />
     </div>
   );
 };

@@ -8,7 +8,26 @@ import { getAllPateints } from "@/apis/pateints";
 import { getAllDoctors } from "@/apis/doctors";
 import { toast } from "react-toastify";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
+import { getDoctorGraphData, getPatientGraphData } from "@/apis/garph";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 const question = {
   id: 1,
   question: "What is Cancer?",
@@ -20,21 +39,32 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
 
-
   const router = useRouter();
   const [loading, setLoading] = useState("false");
   const [data, setData] = useState([]);
   const [doctorsData, setDoctorsData] = useState([]);
+  const [doctorGraphData, setDoctorGraphData] = useState();
+  const [doctorDates, setDoctorDates] = useState([]);
+  const [doctorCounts, setDoctorCounts] = useState([]);
+  const [patintDates, setPatientDates] = useState([]);
+  const [PatientCounts, setPatientCounts] = useState([]);
 
   const getData = async () => {
     try {
       setLoading(true);
       const data = await getAllPateints();
       const doctors = await getAllDoctors();
+      const doctorGraph = await getDoctorGraphData();
+      const patientGraph = await getPatientGraphData();
       console.log("data", data.data);
       console.log("Doctors -------------------data", doctors.data);
-      setData(data.data);
-      setDoctorsData(doctors?.data);
+      setData(data);
+      setDoctorsData(doctors);
+      setDoctorGraphData(doctorGraph);
+      setDoctorDates(doctorGraph.map((item) => item.date));
+      setDoctorCounts(doctorGraph.map((item) => item.count));
+      setPatientDates(patientGraph.map((item) => item.date));
+      setPatientCounts(patientGraph.map((item) => item.count));
       setLoading(false);
     } catch (error) {
       toast.error(error ? error : "Something went wrong", "bottom-right");
@@ -46,6 +76,49 @@ const Dashboard = () => {
     getData();
   }, []);
 
+  const doctorChartData = {
+    labels: doctorDates,
+    datasets: [
+      {
+        label: "Count",
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(75, 192, 192, 0.8)",
+        hoverBorderColor: "rgba(75, 192, 192, 1)",
+        data: doctorCounts,
+      },
+    ],
+  };
+  const patientChartData = {
+    labels: patintDates,
+    datasets: [
+      {
+        label: "Count",
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(75, 192, 192, 0.8)",
+        hoverBorderColor: "rgba(75, 192, 192, 1)",
+        data: PatientCounts,
+      },
+    ],
+  };
+
+  // Chart options configuration
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  const handleButtonClick = (url) => {
+    const pdfUrl = "/path/to/your/pdf.pdf"; // Replace with the actual URL of your PDF
+    window.open(url, "_blank");
+  };
+
   return (
     <div className="flex p-2">
       <div className="p-2">
@@ -54,7 +127,7 @@ const Dashboard = () => {
             Dashboard
           </div>
 
-          <div className=" sm:flex items-center md:ml-32">
+          {/* <div className=" sm:flex items-center md:ml-32">
             <div
               className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md"
               onClick={() => setOpen1(true)}
@@ -62,8 +135,8 @@ const Dashboard = () => {
               <button className="whitespace-nowrap px-3 py-1 text-sm text-white font-semibold">
                 + Add New Information
               </button>
-            </div>{" "}
-          </div>
+            </div>
+          </div> */}
         </div>
         <AddQADialog open={open1} setOpen={setOpen1} />
         {/* //---------------------------------------------------------------------------------- */}
@@ -73,11 +146,13 @@ const Dashboard = () => {
               <div className="shadow w-1/2 py-4 px-4 rounded-lg  ">
                 Doctors Joined platform per week
                 {/* <DoctorsChart/> */}
-                <div className="bg-gray-200 w-full h-40"></div>
+                <Bar data={doctorChartData} options={chartOptions} />
+                {/* <div className="bg-gray-200 w-full h-40"></div> */}
               </div>{" "}
               <div className="shadow  w-1/2  py-4 px-4 rounded-lg ">
-                No. of patient
-                <div className="bg-gray-200 w-full h-40"></div>
+                No. of patient joined this week
+                <Bar data={patientChartData} options={chartOptions} />
+                {/* <div className="bg-gray-200 w-full h-40"></div> */}
               </div>
             </div>
           </div>
@@ -173,7 +248,14 @@ const Dashboard = () => {
                         {item?.phone ? item?.phone : "N/A"}
                       </div>
                     </div>
-                    <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+                    <DocumentDownloadIcon
+                      onClick={() =>
+                        handleButtonClick(
+                          item?.userHealthRecord?.healthRecord[0]
+                        )
+                      }
+                      className="w-6 h-6 text-[#936CAB]"
+                    />
                   </div>
                 </div>
               ))}
@@ -245,7 +327,10 @@ const Dashboard = () => {
                         {item?.phone ? item?.phone : "N/A"}
                       </div>
                     </div>
-                    <DocumentDownloadIcon className="w-6 h-6 text-[#936CAB]" />
+                    <DocumentDownloadIcon
+                      onClick={() => handleButtonClick(item?.documents[0])}
+                      className="w-6 h-6 text-[#936CAB]"
+                    />
                   </div>
                 </div>
               ))}
