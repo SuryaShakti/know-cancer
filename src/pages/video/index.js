@@ -5,6 +5,7 @@ import { getAllVideos } from "@/apis/videos";
 import YouTube from "react-youtube";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { getAllQuestions } from "@/apis/qna";
 
 const YouTubeVideo = ({ videoUrl }) => {
   const getVideoIdFromUrl = (url) => {
@@ -35,22 +36,46 @@ const Video = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const getData = async () => {
+  const [questions, setQuestions] = useState([]);
+  const getQuestions = async () => {
+    console.log("runned");
     try {
       setLoading(true);
-      const data = await getAllVideos();
-      console.log(data);
-      setData(data);
+
+      const response = await getAllQuestions();
+      console.log(response.filter((item) => item.preference === 2));
+      setData(
+        response.filter(
+          (item) => item.preference === 2 || item.preference === 3
+        )
+      );
       setLoading(false);
     } catch (error) {
-      toast.error(error ? error : "Something went wrong", "bottom-right");
+      toast.error(error ? error : "Something went wrong");
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getData();
+    getQuestions();
   }, []);
+
+  // const getData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const data = await getAllVideos();
+  //     console.log(data);
+  //     setData(data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     toast.error(error ? error : "Something went wrong", "bottom-right");
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <div>
@@ -58,7 +83,7 @@ const Video = () => {
         <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
           Videos
         </div>
-        <div className=" sm:flex items-center md:ml-32">
+        {/* <div className=" sm:flex items-center md:ml-32">
           <div
             className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md"
             onClick={() => setOpen(true)}
@@ -67,7 +92,7 @@ const Video = () => {
               + Add New Video
             </button>
           </div>{" "}
-        </div>
+        </div> */}
 
         <AddVideoDialog
           open={open}

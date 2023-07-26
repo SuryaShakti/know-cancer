@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { SearchIcon } from "@heroicons/react/outline";
 import AddQADialog from "@/components/Dialogs/AddQ&ADialog";
@@ -12,6 +12,13 @@ const Profile = () => {
   const handleChange = (file) => {
     setFile(file);
   };
+
+  useEffect(() => {
+    console.log(
+      "user in local storage",
+      JSON.parse(localStorage.getItem("user"))
+    );
+  }, []);
 
   return (
     <div>

@@ -13,6 +13,6 @@ export const loginHandler = async (email, password) => {
     });
     return response.data;
   } catch (error) {
-    return error.response.data.message;
+    throw error.response.data.message;
   }
 };

@@ -166,7 +166,7 @@ export default function Layout({ children }) {
           </Dialog>
         </Transition.Root>
         {/* ------------------------- NAVBAR ------------------------ */}
-        <div className="sticky top-0 z-10 flex-shrink-0 flex h-auto bg-white border-b shadow-[0_2px_1px_rgba(0, 0, 0, 0.05)]">
+        <div className="px-5 sticky top-0 z-10 flex-shrink-0 flex h-auto bg-white border-b shadow-[0_2px_1px_rgba(0, 0, 0, 0.05)]">
           <button
             type="button"
             className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"

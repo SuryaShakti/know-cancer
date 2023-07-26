@@ -93,11 +93,11 @@ const Questions = () => {
 
   const [on, setOn] = useState(false);
   const [currentRow, setCurrentRow] = useState("");
-  const [questions, setQuestions] = useState([]);
-
+  
   const [edit, setEdit] = useState(false);
   const [editData, setEditData] = useState(null);
 
+  const [questions, setQuestions] = useState([]);
   const getQuestions = async () => {
     console.log("runned");
     try {
@@ -160,9 +160,7 @@ const Questions = () => {
   return (
     <div>
       <div className="flex flex-1 justify-between items-center">
-        <div className="w-auto justify-start font-semibold text-xl text-[#374151] ">
-          Information
-        </div>
+        <div className="text-gray-600 font-semibold text-xl">Information</div>
         <div className=" sm:flex items-center md:ml-32">
           <div
             className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md"

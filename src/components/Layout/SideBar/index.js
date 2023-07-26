@@ -12,6 +12,7 @@ import {
   StarIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
@@ -59,6 +60,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const SideBar = () => {
+
+  const router = useRouter()
+
+
   return (
     <div className="hidden md:flex md:w-52 md:flex-col md:fixed md:inset-y-0">
       {/* Sidebar component, swap this element with another sidebar if you like */}
@@ -86,7 +91,7 @@ const SideBar = () => {
                 <a
                   key={item.name}
                   className={classNames(
-                    item.current
+                    item.href === router.pathname
                       ? " text-[#936CAB]"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                     "group flex items-center px-2 py-1 text-sm font-medium rounded-md"
@@ -94,7 +99,7 @@ const SideBar = () => {
                 >
                   <item.icon
                     className={classNames(
-                      item.current
+                      item.href === router.pathname
                         ? "text-[#936CAB]"
                         : "text-gray-400 group-hover:text-gray-500",
                       "mr-3 flex-shrink-0 h-6 w-6"

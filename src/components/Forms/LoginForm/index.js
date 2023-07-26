@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import OtpDialog from "@/components/Dialogs/OtpDialog";
 import { loginHandler } from "@/apis/auth";
 import { BeatLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
@@ -28,6 +29,7 @@ const LoginForm = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      toast.error(error ? error : "Something went wrong");
       setLoading(false);
     }
   };

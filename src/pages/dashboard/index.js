@@ -120,12 +120,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex p-2">
-      <div className="p-2">
-        <div className="flex justify-between items-center">
-          <div className="justify-start font-bold text-[#374151] ">
-            Dashboard
-          </div>
+    <div className="md:flex justify-between ">
+      <div className=" flex-1">
+        <div className="w-full flex justify-between items-center">
+          <div className="text-gray-600 font-semibold text-xl">Dashboard</div>
 
           {/* <div className=" sm:flex items-center md:ml-32">
             <div
@@ -140,45 +138,20 @@ const Dashboard = () => {
         </div>
         <AddQADialog open={open1} setOpen={setOpen1} />
         {/* //---------------------------------------------------------------------------------- */}
-        <div className="grid lg:grid-cols-10 gap-5 py-6">
-          <div className="lg:col-span-7">
-            <div className="flex justify-between space-x-3 items-center">
-              <div className="shadow w-1/2 py-4 px-4 rounded-lg  ">
+        <div className="w-full grid lg:grid-cols-10 gap-5 py-6">
+          <div className="lg:col-span-10 w-full">
+            <div className="md:flex md:justify-between w-full md:space-x-3 md:items-center">
+              <div className="shadow md:w-1/2 w-[90vw] py-4 md:px-4 p-2 rounded-lg  ">
                 Doctors Joined platform per week
                 {/* <DoctorsChart/> */}
                 <Bar data={doctorChartData} options={chartOptions} />
                 {/* <div className="bg-gray-200 w-full h-40"></div> */}
               </div>{" "}
-              <div className="shadow  w-1/2  py-4 px-4 rounded-lg ">
+              <div className="shadow  md:w-1/2 w-[90vw] py-4 md:px-4 p-2 rounded-lg ">
                 No. of patient joined this week
                 <Bar data={patientChartData} options={chartOptions} />
                 {/* <div className="bg-gray-200 w-full h-40"></div> */}
               </div>
-            </div>
-          </div>
-          <div className="lg:col-span-3">
-            <div className="shadow py-1 px-3 rounded-lg ">
-              <div className="font-bold text-lg">Q&A</div>
-              <div className="h-5 py-2 text-[#E61323] text-lg font-['Poppins']">
-                Question- {question.question}
-              </div>
-              <div className="font-normal text-sm py-5">
-                {question.answer.slice(0, 110)}{" "}
-                <button
-                  className="text-[#936CAB]"
-                  onClick={() => setOpen(true)}
-                >
-                  ....Read It
-                </button>
-                <div className="flex justify-end w-full py-2">
-                  <button
-                    onClick={() => router.push("/questions")}
-                    className="text-[#936CAB] font-bold"
-                  >
-                    View All
-                  </button>
-                </div>
-              </div>{" "}
             </div>
           </div>
         </div>
@@ -186,7 +159,7 @@ const Dashboard = () => {
         {/* //-----------------------------   PATIENT DATA SECTION ------------------------------------------- */}
         <div>
           <div className="flex justify-between mb-1">
-            <div className="text-gray-800 font-semibold text-lg">
+            <div className="text-gray-600 font-semibold text-xl">
               Patient Data
             </div>
             <button
@@ -221,9 +194,9 @@ const Dashboard = () => {
                           : "Others"}
                       </div>
                     </div>
-                    <div className="whitespace-nowrap w-fit px-1 py-1 text-sm rounded-md border border-[#936CAB]">
+                    {/* <div className="whitespace-nowrap w-fit px-1 py-1 text-sm rounded-md border border-[#936CAB]">
                       Still in progress
-                    </div>
+                    </div> */}
                   </div>
                   <div className="mt-3 flex justify-between items-center">
                     <div className="">
@@ -264,7 +237,7 @@ const Dashboard = () => {
         {/* ---------------------------------------------DOCTORS DATA------------------------------ */}
         <div className="mt-5">
           <div className="flex justify-between mb-1">
-            <div className="text-gray-800 font-semibold text-lg">
+            <div className="text-gray-600 font-semibold text-xl">
               Doctors Data
             </div>
             <button
@@ -302,9 +275,9 @@ const Dashboard = () => {
                           : "Others"}
                       </div>
                     </div>
-                    <div className="whitespace-nowrap w-fit px-1 py-1 text-sm rounded-md border border-[#936CAB]">
+                    {/* <div className="whitespace-nowrap w-fit px-1 py-1 text-sm rounded-md border border-[#936CAB]">
                       Still in progress
-                    </div>
+                    </div> */}
                   </div>
                   <div className="mt-3 flex justify-between items-center">
                     <div className="">
@@ -342,7 +315,10 @@ const Dashboard = () => {
       <div>
         <div className="h-full w-52 shadow py-1 p-3 rounded-lg text-left">
           {" "}
-          <div className="font-semibold text-lg"> Notifications</div>
+          <div className="text-gray-600 font-semibold text-xl">
+            {" "}
+            Notifications
+          </div>
           <div className="flex text-black pt-2 text-sm">
             You have a new QA to check..
           </div>

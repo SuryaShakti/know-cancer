@@ -118,8 +118,8 @@ const DoctorsData = () => {
 
   return (
     <div>
-      <div className="text-xl font-medium mb-5">Doctors Data</div>{" "}
-      <div className="">
+      <div className="text-gray-600 font-semibold text-xl">Doctors Data</div>{" "}
+      <div className="mt-5">
         <Tab.Group>
           <Tab.List>
             <Tab className="  px-12 py-1 border rounded-md ">
@@ -151,20 +151,20 @@ const DoctorsData = () => {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <div class="relative rounded-lg ">
-                <table class="text-left">
-                  <thead class="text-base text-[#667085] Table ">
-                    <tr>
-                      <th scope="col" class="px-16 py-3">
+              <div className="w-full relative rounded-lg ">
+                <table className="w-full text-left">
+                  <thead className="w-full text-base text-[#667085] Table ">
+                    <tr className="grid grid-cols-4 w-full">
+                      <th scope="col" className="py-3">
                         Doctor Name
                       </th>
-                      <th scope="col" class="px-12 py-3">
+                      <th scope="col" className="py-3">
                         Document
                       </th>
-                      <th scope="col" class="px-16 py-3">
+                      <th scope="col" className="py-3">
                         Speciality
                       </th>
-                      <th scope="col" class="px-28 py-3">
+                      <th scope="col" className="py-3">
                         Status
                       </th>
                     </tr>
@@ -173,13 +173,13 @@ const DoctorsData = () => {
                     {doctorsData
                       ?.filter((item, index) => item.status === 1)
                       .map((item, index) => (
-                        <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                          <td class="px-12 py-4 text-base">
+                        <tr className="w-full grid grid-cols-4  border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                          <td className="py-4 text-base">
                             {item?.createdBy?.name
                               ? item?.createdBy?.name
                               : "N/A"}
                           </td>
-                          <td class="px-12 py-4 text-[#6A6A6A] font-normal">
+                          <td className="py-4 text-[#6A6A6A] font-normal">
                             {item?.documents[0] ? (
                               <DocumentDownloadIcon
                                 onClick={() =>
@@ -191,8 +191,8 @@ const DoctorsData = () => {
                               "N/A"
                             )}
                           </td>
-                          <td class="px-16">{item.speciality}</td>
-                          <td class="flex justify-between px-14 py-4 absolute rounded-md font-semibold text-sm">
+                          <td className="py-4">{item.speciality}</td>
+                          <td className="flex space-x-5 py-4  rounded-md font-semibold text-sm">
                             <div className=" sm:flex items-center ">
                               <div
                                 className=" font-normal text-sm w-full bg-[#936CAB] mr-2 rounded-md "
@@ -221,20 +221,20 @@ const DoctorsData = () => {
               </div>
             </Tab.Panel>
             <Tab.Panel>
-              <div class="relative rounded-lg ">
-                <table class="text-left">
-                  <thead class="text-base text-[#667085] Table">
-                    <tr>
-                      <th scope="col" class="px-16 py-3">
+              <div className="w-full relative rounded-lg ">
+                <table className="w-full text-left">
+                  <thead className="w-full text-base text-[#667085] Table">
+                    <tr className="w-full grid grid-cols-4">
+                      <th scope="col" className=" py-3">
                         Doctor Name
                       </th>
-                      <th scope="col" class="px-12 py-3">
+                      <th scope="col" className="py-3">
                         Document
                       </th>
-                      <th scope="col" class="px-20 py-3">
+                      <th scope="col" className="py-3">
                         Speciality
                       </th>
-                      <th scope="col" class="px-20 py-3">
+                      <th scope="col" className=" py-3">
                         Code
                       </th>
                     </tr>
@@ -243,11 +243,11 @@ const DoctorsData = () => {
                     {doctorsData
                       ?.filter((item, index) => item.status === 2)
                       .map((item, index) => (
-                        <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                          <td class="px-12 py-4 text-base">
+                        <tr className="w-full grid grid-cols-4 border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                          <td className=" py-4 text-base">
                             {item?.createdBy?.name}
                           </td>
-                          <td class="px-12 py-4 text-[#6A6A6A] font-normal">
+                          <td className=" py-4 text-[#6A6A6A] font-normal">
                             {item?.documents[0] ? (
                               <DocumentDownloadIcon
                                 onClick={() =>
@@ -259,8 +259,8 @@ const DoctorsData = () => {
                               "N/A"
                             )}
                           </td>
-                          <td class="px-20">{item.speciality}</td>
-                          <td class="px-20">{item.code}</td>
+                          <td className="">{item.speciality}</td>
+                          <td className="">{item.code}</td>
                         </tr>
                       ))}
                   </tbody>

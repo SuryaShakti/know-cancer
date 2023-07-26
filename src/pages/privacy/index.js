@@ -5,7 +5,7 @@ const Privacy = () => {
   return (
     <div className="text-black text-base font-normal py-1 font-['Poppins']">
       <div className="flex flex-1 justify-between items-center">
-        <h1 className="text-2xl font-bold">Privacy Policy</h1>
+        <h1 className="text-gray-600 font-semibold text-xl">Privacy Policy</h1>
         <div className=" sm:flex items-center md:ml-32">
           {/* <div
             className=" font-normal text-sm bg-[#936CAB] mr-2 rounded-md"
@@ -86,11 +86,11 @@ const Privacy = () => {
         quia dolor sit amet, consectetur, adipisci velit, sed quia non.
       </p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      <div className="flex w-full py-2" onClick={() => setOpen(true)}>
+      {/* <div className="flex w-full py-2" onClick={() => setOpen(true)}>
         <button className="bg-[#936CAB] rounded-md border text-white px-20 py-1">
           Done
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

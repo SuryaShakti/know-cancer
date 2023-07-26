@@ -110,9 +110,7 @@ const Review = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <div className="w-auto justify-start font-bold text-xl text-[#374151] ">
-          Review
-        </div>
+        <div className="text-gray-600 font-semibold text-xl">Review</div>
       </div>
       <Tab.Group>
         <Tab.List>

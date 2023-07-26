@@ -127,35 +127,70 @@ const QAForm = ({ data, setData, setOpen, edit, editData }) => {
             Both
           </label>
         </div>
-
-        <div className="text-black text-left font-bold">Answer:</div>
-        <div>
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <input
-              type="text"
-              name="answer"
-              id="answer"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="Cancer is a complex and diverse group of diseases Cancer is a complex and diverse group of diseases "
-              className="block w-full h-16 rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
-            />
+        {preference === 1 && (
+          <div>
+            <div className="text-black text-left font-bold">Answer:</div>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="answer"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Cancer is a complex and diverse group of diseases Cancer is a complex and diverse group of diseases "
+                className="block w-full h-16 rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
-        </div>
-        <div className="text-black font-bold text-left">Link</div>
-        <div>
-          <div className="relative mt-2 rounded-md shadow-sm">
-            <input
-              type="text"
-              name="link"
-              id="link"
-              placeholder="willie.jennings@example.com"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-              className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
-            />
+        )}
+        {preference === 2 && (
+          <div>
+            <div className="text-black font-bold text-left">Link</div>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="link"
+                id="link"
+                placeholder="willie.jennings@example.com"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
-        </div>
+        )}
+        {preference === 3 && (
+          <div>
+            <div className="text-black text-left font-bold">Answer:</div>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="answer"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Cancer is a complex and diverse group of diseases Cancer is a complex and diverse group of diseases "
+                className="block w-full h-16 rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+        )}
+        {preference === 3 && (
+          <div>
+            <div className="text-black font-bold text-left">Link</div>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                type="text"
+                name="link"
+                id="link"
+                placeholder="willie.jennings@example.com"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                className="block w-full rounded-md py-1 px-2 bg-[#3232470F] text-[#000000] placeholder:text-gray-400 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+        )}
         <div className="text-black font-bold text-left">Intent</div>
         <div>
           <div className="relative mt-2 rounded-md shadow-sm">

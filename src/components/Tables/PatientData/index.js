@@ -87,29 +87,29 @@ const PatientData = () => {
 
   return (
     <div>
-      <div class="relative rounded-lg ">
-        <table class="text-left">
-          <thead class="text-base text-[#667085] Table">
-            <tr>
-              <th scope="col" class="px-16 py-3">
+      <div className="relative w-full rounded-lg ">
+        <table className="w-full text-left">
+          <thead className="w-full text-base text-[#667085] ">
+            <tr className="w-full grid grid-cols-4 ">
+              <th scope="col" className=" py-3">
                 Patient Name
               </th>
-              <th scope="col" class="px-12 py-3">
+              <th scope="col" className=" py-3">
                 Report
               </th>
-              <th scope="col" class="px-16 py-3">
+              <th scope="col" className=" py-3">
                 Contact Details
               </th>
-              <th scope="col" class="px-16 py-3">
+              <th scope="col" className=" py-3">
                 Consulting Doctor
               </th>
             </tr>
           </thead>
           <tbody>
             {data?.map((item, index) => (
-              <tr class="bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
-                <td class="px-12 py-4 font-medium text-base">{item?.name}</td>
-                <td class="px-12 py-4 text-[#6A6A6A] font-normal">
+              <tr className="grid grid-cols-4 bg-white border-b shadow-[0_4px_14px_rgba(0, 0, 0, 0.05)]">
+                <td className=" py-4 font-medium text-base">{item?.name}</td>
+                <td className=" py-4 text-[#6A6A6A] font-normal">
                   {item?.userHealthRecord?.healthRecord[0] ? (
                     <DocumentDownloadIcon
                       onClick={() =>
@@ -123,8 +123,8 @@ const PatientData = () => {
                     "N/A"
                   )}
                 </td>
-                <td class="px-20">{item?.phone ? item.phone : "N/A"}</td>
-                <td class="px-24 py-4 ">
+                <td className="">{item?.phone ? item.phone : "N/A"}</td>
+                <td className="py-4 ">
                   {item?.doctor?.name ? item.doctor.name : "N/A"}
                 </td>
               </tr>

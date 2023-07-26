@@ -10,7 +10,7 @@ export const getAllQuestions = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${API_URL}/qna?$limit=-1`,
+      url: `${API_URL}/qna?$limit=-1&$sort[createdAt]=-1`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
